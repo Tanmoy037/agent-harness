@@ -1,0 +1,6 @@
+# generated per-role folders (harness team build)
+build/
+# fetched third-party repositories (harness skills install)
+.cache/
+node_modules/
+.DS_Store

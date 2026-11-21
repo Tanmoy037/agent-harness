@@ -1,0 +1,8 @@
+{
+  "name": "stakeholder-update",
+  "repo": "https://github.com/anthropics/knowledge-work-plugins",
+  "commit": "0e0fcacddcc892eb92a1b7873ff9d68159c47571",
+  "path": "product-management/skills/stakeholder-update",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

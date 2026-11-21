@@ -1,0 +1,8 @@
+{
+  "name": "playwright-cli",
+  "repo": "https://github.com/microsoft/playwright-cli",
+  "commit": "c872a33cec77fa03c28fa7c6d1ad99d15d04ce42",
+  "path": "skills/playwright-cli",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

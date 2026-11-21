@@ -1,0 +1,8 @@
+{
+  "name": "k6",
+  "repo": "https://github.com/grafana/skills",
+  "commit": "8fb72a527961f05e708f53d2a0500709e12d7970",
+  "path": "skills/grafana-k6/k6",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

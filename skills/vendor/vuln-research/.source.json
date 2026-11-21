@@ -1,0 +1,8 @@
+{
+  "name": "vuln-research",
+  "repo": "https://github.com/briiirussell/cybersecurity-skills",
+  "commit": "b19875422c1388db8c14d91ba7c1f8343e98c48b",
+  "path": "skills/vuln-research",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

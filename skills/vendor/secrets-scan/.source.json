@@ -1,0 +1,8 @@
+{
+  "name": "secrets-scan",
+  "repo": "https://github.com/OWASP/secure-agent-playbook",
+  "commit": "65d4efd2cd0b081d52101e9708792b944e4ddebb",
+  "path": "plugins/code-security-skills/skills/secrets-scan",
+  "license": "CC-BY-4.0",
+  "vendored": "2026-11-21"
+}

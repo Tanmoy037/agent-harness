@@ -1,0 +1,8 @@
+{
+  "name": "docker-build-strategies",
+  "repo": "https://github.com/docker/skills",
+  "commit": "caeee2024f7527d890a29dd1732b62a112f56d0e",
+  "path": "skills/docker-build-strategies",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

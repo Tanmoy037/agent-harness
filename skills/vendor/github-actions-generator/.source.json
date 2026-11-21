@@ -1,0 +1,8 @@
+{
+  "name": "github-actions-generator",
+  "repo": "https://github.com/akin-ozer/cc-devops-skills",
+  "commit": "276af751e659315aaf56d3ad13d7c26f4e72e28a",
+  "path": "devops-skills-plugin/skills/github-actions-generator",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "git-workflow-and-versioning",
+  "repo": "https://github.com/addyosmani/agent-skills",
+  "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+  "path": "skills/git-workflow-and-versioning",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

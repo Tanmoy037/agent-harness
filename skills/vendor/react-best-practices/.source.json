@@ -1,0 +1,8 @@
+{
+  "name": "react-best-practices",
+  "repo": "https://github.com/vercel-labs/agent-skills",
+  "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+  "path": "skills/react-best-practices",
+  "license": "MIT (frontmatter and README; no LICENSE file in repo)",
+  "vendored": "2026-11-21"
+}

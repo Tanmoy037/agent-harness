@@ -1,0 +1,8 @@
+{
+  "name": "design-postgres-tables",
+  "repo": "https://github.com/timescale/pg-aiguide",
+  "commit": "1aef6e452b97fae580d57677a807fd0d601ddc7b",
+  "path": "skills/design-postgres-tables",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "netlify-deploy",
+  "repo": "https://github.com/netlify/context-and-tools",
+  "commit": "b111e771432aecedc81782d64cac42530a9cd1eb",
+  "path": "skills/netlify-deploy",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

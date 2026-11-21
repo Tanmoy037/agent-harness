@@ -1,0 +1,8 @@
+{
+  "name": "aws-well-architected-review",
+  "repo": "https://github.com/aws/agent-toolkit-for-aws",
+  "commit": "947a491774eed33d2a117bbecea50debc6ac1a20",
+  "path": "skills/core-skills/aws-well-architected-review",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

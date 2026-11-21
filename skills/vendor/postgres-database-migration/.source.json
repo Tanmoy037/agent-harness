@@ -1,0 +1,8 @@
+{
+  "name": "postgres-database-migration",
+  "repo": "https://github.com/timescale/pg-aiguide",
+  "commit": "1aef6e452b97fae580d57677a807fd0d601ddc7b",
+  "path": "skills/postgres-database-migration",
+  "license": "Apache-2.0 (repo LICENSE; not stated in the file)",
+  "vendored": "2026-11-21"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ui-verification",
+  "repo": "https://github.com/mblode/agent-skills",
+  "commit": "ff9805a3dabf4529f4d88f6b3f09c5a33cb0fcb6",
+  "path": "skills/ui-verification",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

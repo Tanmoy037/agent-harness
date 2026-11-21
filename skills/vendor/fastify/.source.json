@@ -1,0 +1,8 @@
+{
+  "name": "fastify",
+  "repo": "https://github.com/mcollina/skills",
+  "commit": "c75d70dbfbe991d8cec42aeda0b64ff14fbb9ac7",
+  "path": "skills/fastify",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

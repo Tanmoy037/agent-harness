@@ -1,0 +1,8 @@
+{
+  "name": "render-deploy",
+  "repo": "https://github.com/render-oss/skills",
+  "commit": "841f4e3f857f85c86719ca392aecd3a29c7df164",
+  "path": "skills/render-deploy",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

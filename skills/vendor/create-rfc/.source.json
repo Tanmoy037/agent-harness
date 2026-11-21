@@ -1,0 +1,8 @@
+{
+  "name": "create-rfc",
+  "repo": "https://github.com/tech-leads-club/agent-skills",
+  "commit": "fb02f17d15f40f5410bf0706a79d9226a31b82ce",
+  "path": "packages/skills-catalog/skills/(creation)/create-rfc",
+  "license": "CC-BY-4.0",
+  "vendored": "2026-11-21"
+}

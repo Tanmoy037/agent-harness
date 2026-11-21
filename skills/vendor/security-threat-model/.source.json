@@ -1,0 +1,8 @@
+{
+  "name": "security-threat-model",
+  "repo": "https://github.com/openai/skills",
+  "commit": "49f948faa9258a0c61caceaf225e179651397431",
+  "path": "skills/.curated/security-threat-model",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

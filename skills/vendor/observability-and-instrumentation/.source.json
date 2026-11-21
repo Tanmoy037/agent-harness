@@ -1,0 +1,8 @@
+{
+  "name": "observability-and-instrumentation",
+  "repo": "https://github.com/addyosmani/agent-skills",
+  "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+  "path": "skills/observability-and-instrumentation",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

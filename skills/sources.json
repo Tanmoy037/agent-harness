@@ -1,0 +1,2188 @@
+[
+  {
+    "name": "accessibility-engineering",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/accessibility-engineering",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Unattended audit, triage and fix loop using pinned axe and pa11y versions; refuses to claim screen-reader checks it did not run.",
+    "needs": "Node; npx @axe-core/cli and pa11y (pinned in the script)",
+    "risk_notes": "One shell script (audit-a11y.sh) that runs pinned npx packages (axe 4.13.0, pa11y 9.1.1). Links to files outside the skill directory.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "api-and-interface-design",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/api-and-interface-design",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer",
+      "senior-engineer"
+    ],
+    "why": "Contract-first API design with Hyrum's Law, error semantics, pagination and an unusually concrete idempotency-key section (atomic claim, payload guard, in-flight duplicates).",
+    "risk_notes": "Prose only. Examples are TypeScript/REST.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "code-review-and-quality",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/code-review-and-quality",
+    "license": "MIT",
+    "roles": [
+      "staff-engineer"
+    ],
+    "why": "Chosen reviewer skill: five-axis review, tests-first reading, mutation check of new tests, severity-labelled findings and a verify-the-verification step.",
+    "risk_notes": "Links to ../../references/security-checklist.md and performance-checklist.md outside the skill folder; vendor addyosmani references/ alongside or the links break.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "code-simplification",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/code-simplification",
+    "license": "MIT",
+    "roles": [
+      "staff-engineer",
+      "senior-engineer"
+    ],
+    "why": "Behaviour-preserving refactoring with Chesterton's Fence checks, a concrete signal-to-simplification table and TS/Python/React specifics.",
+    "risk_notes": "Prose only. None found.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "deprecation-and-migration",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/deprecation-and-migration",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer"
+    ],
+    "why": "Covers the keep-or-sunset decision, strangler/adapter/feature-flag migrations and expand/contract schema changes with a worked rename example.",
+    "risk_notes": "Prose only. None found.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "documentation-and-adrs",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/documentation-and-adrs",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer"
+    ],
+    "why": "Chosen ADR skill: when to write one, match-the-existing-convention rule, template with alternatives, lifecycle, plus documentation-drift detection.",
+    "risk_notes": "Prose only. None found.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "doubt-driven-development",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/doubt-driven-development",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer"
+    ],
+    "why": "Bounded adversarial fresh-context review of non-trivial decisions, with optional cross-model escalation that suits a Codex-plus-Claude setup.",
+    "needs": "optional: codex or gemini CLI for cross-model review",
+    "risk_notes": "Links to ../../references/orchestration-patterns.md and the repo's agents/ directory, which break when the folder is vendored alone. States it must run in the main session, not inside a sub-agent. Cross-model step would invoke gemini/codex CLIs after asking the user.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "frontend-ui-engineering",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/frontend-ui-engineering",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Engineer-side implementation rules with an 'avoid the AI aesthetic' table and state handling at 320/768/1024/1440.",
+    "risk_notes": "React and Tailwind examples. None found beyond that.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "git-workflow-and-versioning",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/git-workflow-and-versioning",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer",
+      "staff-engineer"
+    ],
+    "why": "Trunk-based workflow, atomic commits, save-point pattern, change summaries with a 'did not touch' list, pre-commit hygiene and semver/tagging.",
+    "needs": "git",
+    "risk_notes": "Prose only. Mentions `git reset --hard HEAD` as a recovery step; check against harness safety rules.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "incremental-implementation",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/incremental-implementation",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Thin vertical slices with simplicity-first and scope-discipline rules ('noticed but not touching'), feature flags and rollback-friendly increments.",
+    "risk_notes": "Links to ../../references/definition-of-done.md outside the skill folder.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "observability-and-instrumentation",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/observability-and-instrumentation",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer",
+      "platform-engineer"
+    ],
+    "why": "Starts from the questions on-call will ask, then picks log/metric/trace per question, with alerting, runbooks and verifying the telemetry itself.",
+    "risk_notes": "Links to ../../references/observability-checklist.md outside the skill folder.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "performance-optimization",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/performance-optimization",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer"
+    ],
+    "why": "Measure-identify-fix-verify-guard workflow with a keep-or-revert rule and a log of every attempt, across frontend, backend and queries.",
+    "needs": "optional: Lighthouse / Chrome DevTools",
+    "risk_notes": "Links to ../../references/performance-checklist.md outside the skill folder. Frontend half leans on Lighthouse/Chrome DevTools.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "planning-and-task-breakdown",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/planning-and-task-breakdown",
+    "license": "MIT",
+    "roles": [
+      "boss"
+    ],
+    "why": "Project planning for agent teams: dependency graph, vertical slices, per-task acceptance criteria, checkpoints, risks and parallelisation.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "shipping-and-launch",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/shipping-and-launch",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Pre-launch checklist, feature-flag staged rollout with numeric advance/hold/rollback thresholds, error-budget release gate and a rollback plan template.",
+    "risk_notes": "No scripts; single file. Web-product oriented (includes accessibility and client JS error checks); the infrastructure checklist is six items, so it does not replace a real production-readiness review. I read the headings, the infrastructure checklist and the rollout sections.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "source-driven-development",
+    "repo": "https://github.com/addyosmani/agent-skills",
+    "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+    "path": "skills/source-driven-development",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Makes the engineer detect installed versions, fetch the specific official doc page and cite it, and treats fetched pages as untrusted data.",
+    "needs": "web fetch tool",
+    "risk_notes": "By design it sends the agent to the network (official docs sites). It contains its own prompt-injection hygiene section. Repo also ships optional sdd-cache hooks that call curl; those are outside this folder and not needed.",
+    "extra": [
+      {
+        "from": "references",
+        "to": "references"
+      }
+    ]
+  },
+  {
+    "name": "owasp-security",
+    "repo": "https://github.com/agamm/claude-code-owasp",
+    "commit": "1ae29cb22518560e3625d77f2ae64f61647d9201",
+    "path": ".claude/skills/owasp-security",
+    "license": "MIT",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Only candidate that maps review directly to OWASP Top 10:2025 and ASVS 5.0 (plus the LLM and Agentic Top 10s), with a five-step workflow and a four-question triage rubric before reporting.",
+    "needs": "None.",
+    "risk_notes": "Individual maintainer; LICENSE has no named copyright holder. Its ASVS and Top 10 content was not checked against the OWASP sources. Overlaps with getsentry security-review; use this one for standards mapping. First 70 of 206 lines read."
+  },
+  {
+    "name": "github-actions-generator",
+    "repo": "https://github.com/akin-ozer/cc-devops-skills",
+    "commit": "276af751e659315aaf56d3ad13d7c26f4e72e28a",
+    "path": "devops-skills-plugin/skills/github-actions-generator",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Most complete GitHub Actions authoring skill found: read-only default permissions, SHA-pinned actions, fork-safe PR handling, concurrency and caching, with workflow, reusable-workflow and custom-action templates.",
+    "needs": "None to author; actionlint and act if you add validation",
+    "risk_notes": "Community, single maintainer; last commit 2026-07-11, so pinned action versions in references may be stale. Scripts are a self-test (scripts/test_generator.sh) and action templates (index.js, entrypoint.sh); grep found no network calls in the test script. It tells the agent to validate with the sibling github-actions-validator skill, whose scripts/install_tools.sh pipes curl to bash to install act and actionlint; I am not recommending that validator unmodified. Examples include `git push --force` for moving major-version tags."
+  },
+  {
+    "name": "k8s-yaml-generator",
+    "repo": "https://github.com/akin-ozer/cc-devops-skills",
+    "commit": "276af751e659315aaf56d3ad13d7c26f4e72e28a",
+    "path": "devops-skills-plugin/skills/k8s-yaml-generator",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Best community Kubernetes authoring skill found: a deterministic generate-then-validate sequence with security and resource pattern references and example manifests for Deployment, StatefulSet, RBAC, Ingress and HPA/PDB.",
+    "needs": "kubectl for dry-run validation; optionally kubeconform; cluster access only for server-side dry-run",
+    "risk_notes": "Community, single maintainer; last commit 2026-07-11, about four months before this review. Only script is tests/test_regression.sh, a repo self-test. Validation step calls a sibling skill (k8s-yaml-validator) and `kubectl apply --dry-run`; I did not review the validator skill. No official Kubernetes skill exists to prefer."
+  },
+  {
+    "name": "roadmap-update",
+    "repo": "https://github.com/anthropics/knowledge-work-plugins",
+    "commit": "0e0fcacddcc892eb92a1b7873ff9d68159c47571",
+    "path": "product-management/skills/roadmap-update",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Create or reprioritise a roadmap (Now/Next/Later, quarterly, OKR-aligned) with dependency mapping, capacity planning and change communication.",
+    "needs": "None required. Optional connector: project tracker.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network."
+  },
+  {
+    "name": "stakeholder-update",
+    "repo": "https://github.com/anthropics/knowledge-work-plugins",
+    "commit": "0e0fcacddcc892eb92a1b7873ff9d68159c47571",
+    "path": "product-management/skills/stakeholder-update",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Status reporting by audience and cadence, with green/yellow/red rules and ROAM risk communication.",
+    "needs": "None required. Optional connectors: chat, project tracker, meeting transcripts, knowledge base.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts, no network."
+  },
+  {
+    "name": "synthesize-research",
+    "repo": "https://github.com/anthropics/knowledge-work-plugins",
+    "commit": "0e0fcacddcc892eb92a1b7873ff9d68159c47571",
+    "path": "product-management/skills/synthesize-research",
+    "license": "Apache-2.0",
+    "roles": [
+      "market-research"
+    ],
+    "why": "User research synthesis across interviews, surveys and tickets: thematic analysis, affinity mapping, triangulation and survey-interpretation pitfalls.",
+    "needs": "None required. Optional connectors: knowledge base, user feedback, product analytics, meeting transcripts.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts, no network."
+  },
+  {
+    "name": "write-spec",
+    "repo": "https://github.com/anthropics/knowledge-work-plugins",
+    "commit": "0e0fcacddcc892eb92a1b7873ff9d68159c47571",
+    "path": "product-management/skills/write-spec",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Most complete PRD skill found: problem, goals, non-goals, user stories, P0/P1/P2 requirements, Given/When/Then acceptance criteria, metrics and scope-creep rules.",
+    "needs": "None required. Optional connectors: project tracker, knowledge base, design tool.",
+    "risk_notes": "[read: SKILL.md in full] No scripts, no network."
+  },
+  {
+    "name": "frontend-design",
+    "repo": "https://github.com/anthropics/skills",
+    "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+    "path": "skills/frontend-design",
+    "license": "Apache-2.0",
+    "roles": [
+      "senior-engineer",
+      "staff-designer"
+    ],
+    "why": "Chosen UI-quality skill: concrete typography, layout and copy guidance plus a named list of generated-page tells to avoid, with no tooling attached.",
+    "risk_notes": "Prose only. Framed for greenfield visual design; less useful inside an existing design system."
+  },
+  {
+    "name": "terraform-skill",
+    "repo": "https://github.com/antonbabenko/terraform-skill",
+    "commit": "f5a195992d84c8fb075b0176d666967cd07d2081",
+    "path": "skills/terraform-skill",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Diagnose-first Terraform/OpenTofu skill with about 6,500 lines of references on state management, module patterns, testing, CI/CD and security, and hard rules against unreviewed production applies and destroys.",
+    "needs": "terraform or tofu CLI; optionally tflint, trivy/checkov, terraform-docs; cloud credentials only when running plan/apply",
+    "risk_notes": "No scripts. Community skill from a well-known Terraform author, actively maintained (commit 2026-11-19). Imposes a five-part 'Response Contract' on every Terraform answer, which adds verbosity. Repo root has an mcp.json and plugin manifests outside the skill folder; not needed. I read SKILL.md and the reference list, not every reference file."
+  },
+  {
+    "name": "aws-well-architected-review",
+    "repo": "https://github.com/aws/agent-toolkit-for-aws",
+    "commit": "947a491774eed33d2a117bbecea50debc6ac1a20",
+    "path": "skills/core-skills/aws-well-architected-review",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official AWS skill that runs a gated, evidence-backed Well-Architected review of code and IaC across all pillars and outputs a risk-ranked remediation plan.",
+    "needs": "Web fetch access to docs.aws.amazon.com or the AWS MCP server; read access to the repo; AWS credentials only if live inventory is wanted",
+    "risk_notes": "No scripts. AWS-specific. Non-interactive by default: once scope is given it runs every step without pausing for confirmation. Fetches the framework from docs.aws.amazon.com at review time (HTTPS only) and recommends the AWS MCP documentation reader; says never to upload workload code to external services. Full reviews are long and token-heavy. An identical copy lives under plugins/aws-core/skills."
+  },
+  {
+    "name": "vuln-research",
+    "repo": "https://github.com/briiirussell/cybersecurity-skills",
+    "commit": "b19875422c1388db8c14d91ba7c1f8343e98c48b",
+    "path": "skills/vuln-research",
+    "license": "MIT",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Only usable skill found for researching a live CVE against the product: NVD, vendor and GHSA sources, CISA KEV and EPSS, reachability analysis, PoC availability and patch or mitigate decision.",
+    "needs": "Web search and fetch tools; package manager CLIs for the stack.",
+    "risk_notes": "Individual publisher. The same repository also contains offensive skills (recon, web-pentest, red-team-engagement, osint-recon); vendor this folder only. Uses WebSearch and WebFetch, so fetched advisory pages are untrusted input. Covers one CVE at a time, not proactive trend monitoring. First 60 of 200 lines and the remaining outline read."
+  },
+  {
+    "name": "cloudflare",
+    "repo": "https://github.com/cloudflare/skills",
+    "commit": "5108325ecceabc899c761e07aa617b09c02445ee",
+    "path": "skills/cloudflare",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Cloudflare product-selection skill with a need-to-product map and bundled references for Workers static assets, Pages, D1, KV, R2, Hyperdrive, Containers, Tunnel, WAF and observability.",
+    "needs": "cf CLI (npm package `cf`, Node 22.18+) or wrangler; `cf auth login` or CLOUDFLARE_API_TOKEN",
+    "risk_notes": "No scripts; 130 files, mostly references. Tells the agent to actively surface Cloudflare products the user did not name, so it biases platform choice. Routes to sibling skills (cf-cli, wrangler, workers-best-practices, frameworks-on-cloudflare) that must be vendored separately. references/skill-feedback.md can open a public GitHub issue on cloudflare/skills, but only after the user approves the exact text. The cf CLI it prefers is beta."
+  },
+  {
+    "name": "wrangler",
+    "repo": "https://github.com/cloudflare/skills",
+    "commit": "5108325ecceabc899c761e07aa617b09c02445ee",
+    "path": "skills/wrangler",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Wrangler skill for existing Workers projects: environments, bindings, secrets, previews, dry-run deploys and rollback limitations, retrieval-first rather than memorised flags.",
+    "needs": "project-local wrangler (4.135.0+ for Previews); `wrangler login` or CLOUDFLARE_API_TOKEN; optional Cloudflare docs MCP",
+    "risk_notes": "No scripts. Depends on fetching developers.cloudflare.com docs at run time. Mentions unauthenticated claimable prototype deployments as a documented option, not a default. Same optional skill-feedback GitHub issue flow as the cloudflare skill."
+  },
+  {
+    "name": "ab-testing",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/ab-testing",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Growth experiment design: hypothesis format, sample size, primary and guardrail metrics.",
+    "needs": "None to design. A testing tool and traffic are needed to run.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "ai-seo",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/ai-seo",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Getting cited by AI answer engines: visibility audit, content patterns, agent-readiness checks, with reference routing.",
+    "needs": "Web search. Optional paid monitoring tools.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Names maintainer and partner monitoring tools; cites vendor statistics."
+  },
+  {
+    "name": "cold-email",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/cold-email",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Cold email writing with reference files for personalisation, subject lines, follow-ups, deliverability and reply handling.",
+    "needs": "None to draft. A sending tool is needed to send.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Tool table names the maintainer's own Truelist, with disclosure, and LinkedIn automation tools with a stated terms-of-service risk."
+  },
+  {
+    "name": "competitor-profiling",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/competitor-profiling",
+    "license": "MIT",
+    "roles": [
+      "market-research",
+      "ux-designer"
+    ],
+    "why": "Deep per-competitor dossiers from live sites, keeping observed, inferred and implication layers separate and saving raw scrapes for audit.",
+    "needs": "Best with Firecrawl MCP and DataForSEO MCP (both paid). Falls back to plain web fetch with SEO metrics marked unavailable.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Preferred data stack is paid third-party services."
+  },
+  {
+    "name": "content-strategy",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/content-strategy",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Content planning by searchable versus shareable, pillars and clusters, buyer-stage keywords and prioritisation.",
+    "needs": "None. Optional keyword exports from Ahrefs, Semrush or Search Console.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "copywriting",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/copywriting",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Landing and homepage copy with a diagnose-first protocol, a three-question gate per line (picturable, falsifiable, not swappable with a competitor) and no invented proof.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "customer-research",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/customer-research",
+    "license": "MIT",
+    "roles": [
+      "market-research",
+      "marketing"
+    ],
+    "why": "Three research modes (analyse existing assets, mine public reviews and forums, run interviews and surveys) ending in themes and evidence-based personas; treats fetched text as untrusted.",
+    "needs": "Web search and fetch for the online-mining mode.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "emails",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/emails",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Lifecycle email sequences (welcome, nurture, onboarding, win-back) with timing, copy rules and sequence templates in references.",
+    "needs": "None to draft. An email platform is needed to send.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Lists email vendors in a tool table."
+  },
+  {
+    "name": "launch",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/launch",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Launch planning with owned/rented/borrowed channels, a readiness gate, five launch phases, Product Hunt guidance and checklists.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Names one partner tool (Introw) inline."
+  },
+  {
+    "name": "marketing-ideas",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/marketing-ideas",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Library of 139 tactics filtered by stage, budget and timeline, useful as the backlog generator for growth experiments.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "pricing",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/pricing",
+    "license": "MIT",
+    "roles": [
+      "market-research",
+      "sales"
+    ],
+    "why": "Pricing and packaging: value metric, good-better-best tiers, Van Westendorp and MaxDiff research, price-increase rollout and pricing-page teardown.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "product-marketing",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/product-marketing",
+    "license": "MIT",
+    "roles": [
+      "marketing",
+      "sales"
+    ],
+    "why": "Foundation skill that builds the shared positioning, ICP, competitor and voice context file every other skill in this pack reads.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced."
+  },
+  {
+    "name": "sales-enablement",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/sales-enablement",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Collateral in one place: deck framework, one-pagers, objection docs, battle cards, ROI calculators, demo talk tracks and proposal templates, with six reference files.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Names one partner tool (Introw)."
+  },
+  {
+    "name": "seo-audit",
+    "repo": "https://github.com/coreyhaines31/marketingskills",
+    "commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+    "path": "skills/seo-audit",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Technical, on-page and content SEO audit in priority order, honest about what plain fetch cannot see (JS-injected schema).",
+    "needs": "Web fetch. Optional paid tools: Ahrefs, Semrush, Firecrawl, Screaming Frog.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Repo runs a disclosed paid-partner program and some skills name tools built by the maintainer (disclosed inline); treat tool recommendations as commercially influenced. Names the maintainer's own Magister tool, with disclosure."
+  },
+  {
+    "name": "accessibility-audit",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/accessibility-audit",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Five-layer WCAG 2.2 audit with severity-by-level triage, a report template and a 544-line fixes reference.",
+    "risk_notes": "Names axe, WAVE and Pa11y but does not invoke them. Uses 44px touch targets where design-qa and WCAG 2.2 AA use 24x24."
+  },
+  {
+    "name": "design-critique",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/design-critique",
+    "license": "MIT",
+    "roles": [
+      "staff-designer",
+      "ux-designer"
+    ],
+    "why": "Nine-step critique procedure: Nielsen heuristics with 0-4 severity, 25 UX laws each with a violation signal, IA and content review, and report templates.",
+    "risk_notes": "None found. No scripts."
+  },
+  {
+    "name": "design-ops",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/design-ops",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Designer-to-engineer handoff: nine-category handoff table, checklist, design-QA issue format, acceptance criteria at 320/768/1024/1440.",
+    "risk_notes": "Assumes Figma in places; sprint and ritual sections are human-team filler."
+  },
+  {
+    "name": "design-systems",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/design-systems",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Token architecture and component-spec templates for writing the design system down.",
+    "risk_notes": "None found. Rated lower than the same author's critique and writing skills."
+  },
+  {
+    "name": "interaction-design",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/interaction-design",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "State design done properly: 12-state table with required visual change, state-machine notation, response-time thresholds, state-inventory template including filtered-empty.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "journey-mapping",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/journey-mapping",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "User-flow notation (Garrett's visual vocabulary) and journey-map and blueprint templates.",
+    "risk_notes": "Workshop sections assume human participants; ignore them."
+  },
+  {
+    "name": "ux-strategy",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/ux-strategy",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Competitor typology (direct, indirect, jobs-to-be-done) with matrix and brief templates; the best starting structure for the industry study.",
+    "risk_notes": "Has no procedure for visiting and measuring real sites; pair with a self-authored teardown skill."
+  },
+  {
+    "name": "ux-writing",
+    "repo": "https://github.com/cuellarfr/design-skills",
+    "commit": "7e25e66e87f64f9d3dea22198f9e29937e7c48f5",
+    "path": "skills/ux-writing",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Per-element microcopy patterns, line-length and reading-level targets, and templates for empty, error and onboarding states.",
+    "risk_notes": "None found. Figma MCP is optional. Uses title case for page titles and sentence case for buttons."
+  },
+  {
+    "name": "interface-design",
+    "repo": "https://github.com/Dammyjay93/interface-design",
+    "commit": "2f9be3206855bcb2d1d0af262c8bae25cba6658d",
+    "path": ".claude/skills/interface-design",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Best product-UI (dashboard, app) craft skill: worked type scale, 60/30/10 colour, per-component motion table, and 'swap' and 'squint' tests for sameness.",
+    "risk_notes": "Writes .interface-design/system.md into the project and asks 'does that direction feel right?' before building; needs an unattended override. Its own example uses uppercase tracked labels, which impeccable, hallmark and ui-design treat as an AI tell. Last commit 2026-06-20."
+  },
+  {
+    "name": "form-design",
+    "repo": "https://github.com/dembrandt/dembrandt-skills",
+    "commit": "9d2f652d43f7c8ab7fd3a8d37141e0d77549bd23",
+    "path": "skills/form-design",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Field-level form rules including validation timing (blur with 300-500 ms debounce).",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "loading-states-and-perceived-performance",
+    "repo": "https://github.com/dembrandt/dembrandt-skills",
+    "commit": "9d2f652d43f7c8ab7fd3a8d37141e0d77549bd23",
+    "path": "skills/loading-states-and-perceived-performance",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Duration-to-pattern table (skeleton, spinner, progress) with 10 s and 30 s thresholds and a checklist.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "responsive-paradigms",
+    "repo": "https://github.com/dembrandt/dembrandt-skills",
+    "commit": "9d2f652d43f7c8ab7fd3a8d37141e0d77549bd23",
+    "path": "skills/responsive-paradigms",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Responsive behaviour as explicit paradigms with breakpoint rules; the best responsive skill found.",
+    "risk_notes": "Uses 768/1024 breakpoints, which differ from other shortlisted skills."
+  },
+  {
+    "name": "docker-build-strategies",
+    "repo": "https://github.com/docker/skills",
+    "commit": "caeee2024f7527d890a29dd1732b62a112f56d0e",
+    "path": "skills/docker-build-strategies",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Docker skill for production Dockerfiles: multi-stage builds, BuildKit cache and bind mounts, build secrets and SSH mounts, non-root users, .dockerignore, with Go/Node/Python templates.",
+    "needs": "Docker 23.0+ with BuildKit/buildx",
+    "risk_notes": "One script, scripts/verify-build.sh, which runs a local docker build of the current directory and reports image size and user; grep found no network calls in it beyond what docker build itself pulls. Examples reference $HOME/.npmrc as a BuildKit secret source, which is the correct pattern but does read a credential file at build time. Sibling skills docker-compose-patterns, docker-project-foundations and docker-destructive-guardrails are referenced."
+  },
+  {
+    "name": "break-ui",
+    "repo": "https://github.com/emilkowalski/skill",
+    "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+    "path": "skills/break-ui",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Stress test for built UI with 19 failure signatures: 320px, 200% zoom, RTL, 0/1/1,000 rows.",
+    "needs": "optional dev server",
+    "risk_notes": "Stops after its report."
+  },
+  {
+    "name": "choreograph",
+    "repo": "https://github.com/emilkowalski/skill",
+    "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+    "path": "skills/choreograph",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Sequencing rules for multi-element motion (stagger 30-80 ms, total under about 300 ms).",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "emil-design-eng",
+    "repo": "https://github.com/emilkowalski/skill",
+    "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+    "path": "skills/emil-design-eng",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "First-party motion and interaction craft from the author of Sonner and Vaul: per-component durations, easing rules, a 'never ship' table.",
+    "risk_notes": "Contains a canned 'Initial Response' block returned when invoked without a question; strip it. 684 lines, only the first 250 were read in review."
+  },
+  {
+    "name": "fastapi",
+    "repo": "https://github.com/fastapi/fastapi",
+    "commit": "05e6df7e906c3decba377c37548019973f40bf15",
+    "path": "fastapi/.agents/skills/fastapi",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Official FastAPI skill shipped inside the package, so it tracks the installed version: Annotated, dependencies, response models, streaming/SSE, tooling.",
+    "needs": "fastapi CLI; uv",
+    "risk_notes": "Prose only. Promotes FastAPI Cloud as 'the official managed deployment option' and points to `fastapi deploy`; remove that section if deployment is not the engineer's call."
+  },
+  {
+    "name": "gha-security-review",
+    "repo": "https://github.com/getsentry/skills",
+    "commit": "a582c51ee29d0f35e6ac321340796f77d43da733",
+    "path": "skills/gha-security-review",
+    "license": "Apache-2.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "GitHub Actions review built on real exploit patterns (pwn requests, expression injection, credential theft) that only reports findings with a traced attack path from an external attacker.",
+    "needs": "None.",
+    "risk_notes": "References contain attack payload examples and PoC sketches for your own workflows; this is defensive review material, not tooling. Also reviews CLAUDE.md and AGENTS.md loaded by workflows. First 70 of 192 lines read."
+  },
+  {
+    "name": "security-review",
+    "repo": "https://github.com/getsentry/skills",
+    "commit": "a582c51ee29d0f35e6ac321340796f77d43da733",
+    "path": "skills/security-review",
+    "license": "Apache-2.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Best general secure-code-review skill found: confidence-gated reporting, attacker-controlled versus server-controlled input rules, and 17 topic references (authn, authz, injection, SSRF, crypto, supply chain) plus Python, JS and Docker guides.",
+    "needs": "None.",
+    "risk_notes": "References are derived from the OWASP Cheat Sheet Series under CC BY-SA 4.0 (stated in the skill's own LICENSE file), so share-alike applies to those files. Language guides cover only Python and JavaScript/TypeScript. First 150 of 304 lines read; references listed, not read."
+  },
+  {
+    "name": "cloud-design-patterns",
+    "repo": "https://github.com/github/awesome-copilot",
+    "commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+    "path": "skills/cloud-design-patterns",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer"
+    ],
+    "why": "Catalogue of 42 distributed-system patterns (circuit breaker, saga, CQRS, sharding, strangler fig...) with problem, when-to-use and implementation considerations.",
+    "risk_notes": "Prose only. Derived from Microsoft's Azure Architecture Center; includes an azure-service-mappings.md reference that nudges toward Azure services. Catalogue style, light on trade-off depth."
+  },
+  {
+    "name": "git-commit",
+    "repo": "https://github.com/github/awesome-copilot",
+    "commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+    "path": "skills/git-commit",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Most careful commit procedure found: handles in-progress merges and unmerged files, one logical change per commit, no interactive commands, explicit safety rules.",
+    "needs": "git",
+    "risk_notes": "Prose only. allowed-tools is written in Copilot syntax (shell(git:*))."
+  },
+  {
+    "name": "gtm-positioning-strategy",
+    "repo": "https://github.com/github/awesome-copilot",
+    "commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+    "path": "skills/gtm-positioning-strategy",
+    "license": "MIT",
+    "roles": [
+      "marketing"
+    ],
+    "why": "Only dedicated positioning methodology found under a permissive licence: clarity diagnosis, three-layer positioning, staged claim testing and decision trees.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Third-party contribution (author Smit Patel, source beingsmit/technical-product-gtm per frontmatter; upstream not checked). Leans on the author's own anecdotes."
+  },
+  {
+    "name": "test-gap-audit",
+    "repo": "https://github.com/github/awesome-copilot",
+    "commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+    "path": "skills/test-gap-audit",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Read-only audit that ranks missing or weak tests by risk and grounds each gap in a code path; includes an explicit treat-repo-text-as-evidence rule.",
+    "needs": "Python 3, git.",
+    "risk_notes": "Community-contributed skill in a GitHub-owned repo. scripts/coverage_map.py is stdlib-only, self-described read-only, one subprocess call, no network calls found by grep. First 48 lines of SKILL.md and the script header read."
+  },
+  {
+    "name": "k6",
+    "repo": "https://github.com/grafana/skills",
+    "commit": "8fb72a527961f05e708f53d2a0500709e12d7970",
+    "path": "skills/grafana-k6/k6",
+    "license": "Apache-2.0",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Official Grafana recipe for generating and validating k6 scripts from bundled runnable examples for every executor and protocol.",
+    "needs": "k6 binary; optional xk6 extensions; Grafana Cloud k6 token only for cloud runs.",
+    "risk_notes": "The .js files are k6 example scripts, several targeting Grafana's public demo host (quickpizza.grafana.com); they are templates, not helpers that run on load. Includes k6 Cloud examples that would need a Grafana Cloud token. First 75 of 193 lines read; examples skimmed by grep only."
+  },
+  {
+    "name": "better-accessibility",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-accessibility",
+    "license": "MIT",
+    "roles": [
+      "staff-designer",
+      "ux-designer"
+    ],
+    "why": "WCAG 2.2 by criterion with concrete target sizes, for reviewing code.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "better-colors",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-colors",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "OKLCH ramp construction with numeric lightness steps, primitive versus semantic tokens, and status-colour separation rules.",
+    "needs": "a colour library such as culori when generating ramps in code",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "better-interface",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-interface",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Review orchestrator across the better-* set with 13 'high on sight' triggers and a 15-finding cap; a usable final design-QA pass.",
+    "needs": "the other jakubkrehel better-* skills",
+    "risk_notes": "Depends on the sibling better-* skills being installed."
+  },
+  {
+    "name": "better-layout",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-layout",
+    "license": "MIT",
+    "roles": [
+      "staff-designer",
+      "ux-designer"
+    ],
+    "why": "Layout review rules: group gap at least twice the item gap, one primary action, 320px and RTL checks.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "better-typography",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-typography",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Concrete type scale with paired line heights, measure and tracking rules, and a 19-row detection table for typographic defects.",
+    "risk_notes": "None found. Review-and-fix skill; it will not propose a new typeface unless asked, so it does not set direction."
+  },
+  {
+    "name": "better-ui",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-ui",
+    "license": "MIT",
+    "roles": [
+      "staff-designer",
+      "senior-engineer"
+    ],
+    "why": "Surface detail rules: concentric radii, three-layer shadows, icon stroke matched to text weight.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "better-writing",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/better-writing",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Grep-able microcopy bans and undo-versus-confirm rules; good as a lint pass over built UI text.",
+    "risk_notes": "None found."
+  },
+  {
+    "name": "state-machine",
+    "repo": "https://github.com/jakubkrehel/skills",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578",
+    "path": "skills/state-machine",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Renders every state of a component behind a switcher so empty, loading and error states can be reviewed.",
+    "needs": "dev server",
+    "risk_notes": "User-invoked; writes a scratch route into the project."
+  },
+  {
+    "name": "design-review",
+    "repo": "https://github.com/julianoczkowski/designer-skills",
+    "commit": "c259656c76d9758d7ead46b0d2f125cbe84f8665",
+    "path": "design-review",
+    "license": "Apache-2.0",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Screenshot-based review of built UI at 375/768/1280 plus dark mode and states, with Must/Should/Could findings traced to files.",
+    "needs": "Playwright MCP or another browser tool",
+    "risk_notes": "Falls back to asking the user for screenshots if no browser tool is present. Last commit 2026-07-06."
+  },
+  {
+    "name": "information-architecture",
+    "repo": "https://github.com/julianoczkowski/designer-skills",
+    "commit": "c259656c76d9758d7ead46b0d2f125cbe84f8665",
+    "path": "information-architecture",
+    "license": "Apache-2.0",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Produces a concrete IA document: sitemap with URLs, navigation model, per-page content priority, flows with branches, naming glossary.",
+    "risk_notes": "Step 3 interviews the user with five questions; needs an unattended override (answer from the brief). Last commit 2026-07-06."
+  },
+  {
+    "name": "codebase-design",
+    "repo": "https://github.com/mattpocock/skills",
+    "commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+    "path": "skills/engineering/codebase-design",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer",
+      "staff-engineer"
+    ],
+    "why": "Precise deep-module vocabulary (module, interface, depth, seam, adapter, deletion test) plus DEEPENING.md and DESIGN-IT-TWICE.md for comparing interface designs.",
+    "risk_notes": "Prose only; agents/openai.yaml is display metadata. None found."
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "repo": "https://github.com/mattpocock/skills",
+    "commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+    "path": "skills/engineering/improve-codebase-architecture",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer"
+    ],
+    "why": "Finds refactors that deepen shallow modules, scoped by git-history hot spots and respecting existing ADRs.",
+    "needs": "codebase-design skill; sub-agent tool",
+    "risk_notes": "Frontmatter sets disable-model-invocation: true (manual trigger only). Requires the codebase-design skill. Writes an HTML report to $TMPDIR that loads Tailwind and Mermaid from CDNs, then waits for a human to pick a candidate."
+  },
+  {
+    "name": "product-design",
+    "repo": "https://github.com/mblode/agent-skills",
+    "commit": "ff9805a3dabf4529f4d88f6b3f09c5a33cb0fcb6",
+    "path": "skills/product-design",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Compact product-design rules with stable IDs, a 13-state checklist and WCAG 2.2 citations.",
+    "risk_notes": "Stops and asks if the job or outcome cannot be filled in."
+  },
+  {
+    "name": "typography-audit",
+    "repo": "https://github.com/mblode/agent-skills",
+    "commit": "ff9805a3dabf4529f4d88f6b3f09c5a33cb0fcb6",
+    "path": "skills/typography-audit",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "80 typography rules (measure 45-75ch, modular scales, OpenType features) for auditing built pages.",
+    "risk_notes": "Review only."
+  },
+  {
+    "name": "ui-design",
+    "repo": "https://github.com/mblode/agent-skills",
+    "commit": "ff9805a3dabf4529f4d88f6b3f09c5a33cb0fcb6",
+    "path": "skills/ui-design",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Direction, build, audit and deslop modes with about 28 named AI tells, 19 slop rules, a 4px grid and a 10-step colour scale; the audit mode has a strict load contract so review does not turn into redesign.",
+    "needs": "React/Tailwind v4 project for build mode",
+    "risk_notes": "Assumes React, Next and Tailwind v4. Guideline files suggest hotlinking placeholder assets from assets.ui.sh and running pnpm dlx @tailwindcss/cli; remove or pin those lines."
+  },
+  {
+    "name": "ui-verification",
+    "repo": "https://github.com/mblode/agent-skills",
+    "commit": "ff9805a3dabf4529f4d88f6b3f09c5a33cb0fcb6",
+    "path": "skills/ui-verification",
+    "license": "MIT",
+    "roles": [
+      "staff-designer"
+    ],
+    "why": "Design QA by measurement in a real browser: target sizes, focus walk, 320px overflow, theme matrix; a skipped probe is not a pass.",
+    "needs": "Playwright or Chrome DevTools browser tool; running app; axe",
+    "risk_notes": "Boots the project's dev server and drives a browser."
+  },
+  {
+    "name": "documentation",
+    "repo": "https://github.com/mcollina/skills",
+    "commit": "c75d70dbfbe991d8cec42aeda0b64ff14fbb9ac7",
+    "path": "skills/documentation",
+    "license": "MIT",
+    "roles": [
+      "staff-engineer"
+    ],
+    "why": "Diataxis-based technical writing: picks tutorial, how-to, reference or explanation from reader intent and applies per-type structure and validation.",
+    "risk_notes": "Prose only. Says to always ask clarifying questions about audience before writing."
+  },
+  {
+    "name": "fastify",
+    "repo": "https://github.com/mcollina/skills",
+    "commit": "c75d70dbfbe991d8cec42aeda0b64ff14fbb9ac7",
+    "path": "skills/fastify",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Nineteen rule files on Fastify by its lead maintainer: plugins and encapsulation, JSON Schema validation, hooks, inject() testing, serialization, deployment.",
+    "risk_notes": "Prose only. Fastify-specific; skip if the backend is Express/Hono/Nest."
+  },
+  {
+    "name": "node",
+    "repo": "https://github.com/mcollina/skills",
+    "commit": "c75d70dbfbe991d8cec42aeda0b64ff14fbb9ac7",
+    "path": "skills/node",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Node.js practice from a Node TSC member: native type stripping, streams and backpressure, graceful shutdown, flaky and stuck tests, profiling, caching.",
+    "needs": "Node 22.6+ for the type-stripping guidance",
+    "risk_notes": "Prose plus a sample graceful-server.ts and test under rules/assets. tile.json is Tessl registry metadata. Opinionated toward type stripping over tsx/ts-node."
+  },
+  {
+    "name": "typescript-magician",
+    "repo": "https://github.com/mcollina/skills",
+    "commit": "c75d70dbfbe991d8cec42aeda0b64ff14fbb9ac7",
+    "path": "skills/typescript-magician",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Workflow for removing `any` and fixing type errors (tsc before and after) with fifteen reference files on generics, inference and type-level patterns.",
+    "needs": "tsc",
+    "risk_notes": "Prose only. None found."
+  },
+  {
+    "name": "playwright-cli",
+    "repo": "https://github.com/microsoft/playwright-cli",
+    "commit": "c872a33cec77fa03c28fa7c6d1ad99d15d04ce42",
+    "path": "skills/playwright-cli",
+    "license": "Apache-2.0",
+    "roles": [
+      "staff-qa",
+      "principal-qa",
+      "staff-designer",
+      "ux-designer",
+      "senior-engineer"
+    ],
+    "why": "Official Playwright CLI skill for driving a real browser to verify UI work: snapshots, element refs, tracing, request mocking, test generation.",
+    "needs": "playwright-cli (npm @playwright/cli) and a browser install",
+    "risk_notes": "Prose plus ten reference files. Drives a real browser, including storage-state and cookie handling; keep it pointed at local/dev URLs."
+  },
+  {
+    "name": "plain-writing",
+    "repo": "https://github.com/mobbin/skills",
+    "commit": "cac338357d596415773874f06a6c16e862c195e4",
+    "path": "skills/plain-writing",
+    "license": "MIT",
+    "roles": [
+      "ux-designer"
+    ],
+    "why": "Compact anti-slop prose rules for anything the designers write (briefs, direction documents, UI copy).",
+    "risk_notes": "Its description scopes it to Mobbin skills; re-scope when vendoring. No Mobbin account needed."
+  },
+  {
+    "name": "netlify-deploy",
+    "repo": "https://github.com/netlify/context-and-tools",
+    "commit": "b111e771432aecedc81782d64cac42530a9cd1eb",
+    "path": "skills/netlify-deploy",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Netlify skill covering Git continuous deployment, CLI deploys, netlify.toml contexts, deploy previews, untrusted-deploy policy, secrets scanning and platform limits.",
+    "needs": "netlify CLI (23.11.0+ for skew protection); `netlify login` or NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID",
+    "risk_notes": "No scripts. Contains 'house rules' that override user intent: agents must never roll back or restore a deploy and must 'correct the premise rather than complying' when asked to; this conflicts with a rollback-capable platform role and should be edited or overridden. Lists `netlify deploy --allow-anonymous` (temporary claimable project) in the CLI summary without marking it as needing consent. Identical copies exist under codex/skills and agent-plugin/skills."
+  },
+  {
+    "name": "receiving-code-review",
+    "repo": "https://github.com/obra/superpowers",
+    "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+    "path": "skills/receiving-code-review",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Teaches verify-then-implement handling of review feedback, with pushback rules and a ban on performative agreement.",
+    "risk_notes": "Prose only. Written around a single trusted 'human partner'; in a multi-agent harness decide who counts as trusted reviewer."
+  },
+  {
+    "name": "systematic-debugging",
+    "repo": "https://github.com/obra/superpowers",
+    "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+    "path": "skills/systematic-debugging",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer",
+      "staff-engineer",
+      "staff-qa"
+    ],
+    "why": "Four-phase root-cause process with a hard stop after three failed fixes and supporting docs on root-cause tracing, defense in depth and condition-based waiting.",
+    "needs": "npm only if find-polluter.sh is used",
+    "risk_notes": "find-polluter.sh (72 lines, read in full) only loops `npm test <file>` to bisect a polluting test; no network or env reads. Cross-references superpowers:test-driven-development and superpowers:verification-before-completion by name."
+  },
+  {
+    "name": "test-driven-development",
+    "repo": "https://github.com/obra/superpowers",
+    "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+    "path": "skills/test-driven-development",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer",
+      "staff-qa"
+    ],
+    "why": "Strictest red-green-refactor discipline found, with a rationalization table and a companion writing-good-tests.md that forbids asserting on mocks.",
+    "risk_notes": "Prose only. Absolutist tone ('delete the code, start over'); refers to 'your human partner' for exceptions, which needs mapping to the harness's escalation path."
+  },
+  {
+    "name": "verification-before-completion",
+    "repo": "https://github.com/obra/superpowers",
+    "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+    "path": "skills/verification-before-completion",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer",
+      "staff-engineer",
+      "staff-qa",
+      "principal-qa"
+    ],
+    "why": "Single-file gate that bans any 'done/passing' claim without a fresh command run and its output, including not trusting sub-agent success reports.",
+    "risk_notes": "Prose only. None found."
+  },
+  {
+    "name": "writing-plans",
+    "repo": "https://github.com/obra/superpowers",
+    "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+    "path": "skills/writing-plans",
+    "license": "MIT",
+    "roles": [
+      "staff-engineer"
+    ],
+    "why": "Best plan format for handing work to engineers who have not seen the codebase: per-task files, exact Consumes/Produces interfaces, test-first steps and a Review Focus list.",
+    "risk_notes": "Prose only. Hard-codes plan location docs/superpowers/plans/ and a header telling executors to use superpowers:subagent-driven-development or superpowers:executing-plans (not vendored here); edit or vendor those too."
+  },
+  {
+    "name": "security-best-practices",
+    "repo": "https://github.com/openai/skills",
+    "commit": "49f948faa9258a0c61caceaf225e179651397431",
+    "path": "skills/.curated/security-best-practices",
+    "license": "Apache-2.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "About 9k lines of framework-specific secure-default rules for Python, JavaScript/TypeScript and Go stacks, usable for hardening reviews and secure-by-default code.",
+    "needs": "None.",
+    "risk_notes": "Contains an Overrides section telling the agent to defer to project instructions that bypass a practice ('do not fight with them') and advises against recommending HSTS; a security reviewer role may want both removed. Suggests searching online when no reference matches. Repo last updated 2026-06-23. SKILL.md read in full; references not read."
+  },
+  {
+    "name": "security-threat-model",
+    "repo": "https://github.com/openai/skills",
+    "commit": "49f948faa9258a0c61caceaf225e179651397431",
+    "path": "skills/.curated/security-threat-model",
+    "license": "Apache-2.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Repository-grounded threat model with trust boundaries, assets, attacker capabilities, abuse paths and prioritised mitigations, written to a Markdown file against a fixed output contract.",
+    "needs": "None.",
+    "risk_notes": "Step 6 pauses to ask the user to confirm assumptions; route that to the boss agent or it will stall. Repo's last commit is 2026-06-23, so about five months without updates. SKILL.md read in full."
+  },
+  {
+    "name": "iac-security-review",
+    "repo": "https://github.com/OWASP/secure-agent-playbook",
+    "commit": "65d4efd2cd0b081d52101e9708792b944e4ddebb",
+    "path": "plugins/code-security-skills/skills/iac-security-review",
+    "license": "CC-BY-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Only reputable-publisher skill found for infrastructure and deployment review: scoping, optional automated scanning, then manual review by security domain with benchmark references.",
+    "needs": "Optional IaC scanners such as checkov or trivy.",
+    "risk_notes": "Thin: 46-line SKILL.md plus a 169-line play at the plugin root; same packaging caveat as secrets-scan. Only the play's section outline was read, so depth per cloud provider is unverified.",
+    "extra": [
+      {
+        "from": "plugins/code-security-skills/plays",
+        "to": "plays"
+      },
+      {
+        "from": "plugins/code-security-skills/templates",
+        "to": "templates"
+      }
+    ]
+  },
+  {
+    "name": "sca-audit",
+    "repo": "https://github.com/OWASP/secure-agent-playbook",
+    "commit": "65d4efd2cd0b081d52101e9708792b944e4ddebb",
+    "path": "plugins/code-security-skills/skills/sca-audit",
+    "license": "CC-BY-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Known-CVE dependency scan across eight ecosystems via osv-scanner, npm audit, pip-audit, govulncheck or trivy, with reachability and fix-availability triage; complements the Trail of Bits auditor, which covers only npm, PyPI and Go.",
+    "needs": "osv-scanner (preferred) or npm audit, pip-audit, govulncheck, trivy.",
+    "risk_notes": "Same packaging caveat as secrets-scan: depends on `plays/sca-audit.md` and `templates/` at the plugin root. Cites the 2021 Top 10 numbering. The scanners query public vulnerability databases. SKILL.md read in full; first 50 lines of the play read.",
+    "extra": [
+      {
+        "from": "plugins/code-security-skills/plays",
+        "to": "plays"
+      },
+      {
+        "from": "plugins/code-security-skills/templates",
+        "to": "templates"
+      }
+    ]
+  },
+  {
+    "name": "secrets-scan",
+    "repo": "https://github.com/OWASP/secure-agent-playbook",
+    "commit": "65d4efd2cd0b081d52101e9708792b944e4ddebb",
+    "path": "plugins/code-security-skills/skills/secrets-scan",
+    "license": "CC-BY-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Secrets detection procedure using trufflehog, gitleaks or detect-secrets with a manual pattern fallback, contextual triage, redacted reporting and a preventive-controls check.",
+    "needs": "trufflehog or gitleaks or detect-secrets.",
+    "risk_notes": "The SKILL.md is a 40-line summary that points to `plays/secrets-scan.md` and `templates/finding.md` at the plugin root, so vendor `plugins/code-security-skills` (skills, plays, templates, data) together. Running trufflehog with verification enabled sends candidate secrets to their providers; decide whether to allow that. SKILL.md read in full; play not read.",
+    "extra": [
+      {
+        "from": "plugins/code-security-skills/plays",
+        "to": "plays"
+      },
+      {
+        "from": "plugins/code-security-skills/templates",
+        "to": "templates"
+      }
+    ]
+  },
+  {
+    "name": "accessibility-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/accessibility-testing",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "WCAG 2.2 AA coverage combining axe-core in Playwright with keyboard, screen-reader and ARIA manual checks, suitable for a CI gate.",
+    "needs": "Node.js, @playwright/test, @axe-core/playwright.",
+    "risk_notes": "Individual publisher. Only frontmatter and outline read."
+  },
+  {
+    "name": "api-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/api-testing",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "REST and GraphQL testing with schema-as-contract validation, auth boundaries, error and header checks, idempotency and retry cases.",
+    "needs": "Node.js; Playwright or Supertest; Zod or AJV.",
+    "risk_notes": "Individual publisher. Only frontmatter, objective and outline read."
+  },
+  {
+    "name": "bug-reproduction",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/bug-reproduction",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Turns a thin report into a verified minimal deterministic repro, a red-first regression test, a git bisect result and a ticket evidence block.",
+    "needs": "git, Node.js, the project's test runner.",
+    "risk_notes": "Individual publisher. scripts/regression-check.mjs spawns the test command you give it and passes the environment through; no network calls found by grep. Script not read line by line. First 150 of 465 lines of SKILL.md read."
+  },
+  {
+    "name": "exploratory-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/exploratory-testing",
+    "license": "MIT",
+    "roles": [
+      "staff-qa",
+      "principal-qa"
+    ],
+    "why": "Session-based test management: charter template, time-boxed sessions, HICCUPS heuristics, debrief and conversion of findings to automated tests.",
+    "needs": "None.",
+    "risk_notes": "Individual publisher. Written for a human tester; pair with a browser skill for execution. First 130 of 313 lines read."
+  },
+  {
+    "name": "performance-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/performance-testing",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Load, stress, soak and spike profiles with k6, Lighthouse CI budgets as gates, and lab versus field Web Vitals guidance.",
+    "needs": "k6, Lighthouse CI.",
+    "risk_notes": "Individual publisher. Only frontmatter and outline read. Warns against uncoordinated load on production."
+  },
+  {
+    "name": "qa-metrics",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/qa-metrics",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Formulas, stage-appropriate targets and red-state actions for coverage, flake rate, defect escape rate and suite SLAs, which back the quality gates.",
+    "needs": "None.",
+    "risk_notes": "Individual publisher. Only frontmatter and outline read."
+  },
+  {
+    "name": "release-readiness",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/release-readiness",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Evidence-bound go/no-go checklist, smoke suite design, staged rollout gates and pre-defined rollback criteria; explicitly separates blocked from passed checks.",
+    "needs": "None for the checklist; the optional qa.mjs runner needs Node and the whole repo.",
+    "risk_notes": "Individual publisher. One section tells the agent to run `node <qa-skills>/scripts/qa.mjs` from a full repo checkout; that runner is outside the skill folder and was not reviewed, so strip or ignore that section when vendoring. First 170 of 470 lines read."
+  },
+  {
+    "name": "risk-based-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/risk-based-testing",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Six-phase impact x probability risk model with failure-mode analysis, heatmap and coverage-to-risk mapping that feeds the strategy and plan.",
+    "needs": "git (for churn ranking).",
+    "risk_notes": "Individual publisher. Links to an external PDF (satisfice.com HTSM) as reading material only. First 170 of 337 lines read."
+  },
+  {
+    "name": "test-planning",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/test-planning",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Sprint or release test plan: feature decomposition, requirements-to-test coverage mapping, estimation, risk x effort prioritisation and entry/exit criteria.",
+    "needs": "None.",
+    "risk_notes": "Individual publisher. Only frontmatter and section outline read, not the full body."
+  },
+  {
+    "name": "test-reliability",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/test-reliability",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Flake classification decision tree, quarantine lifecycle with expiry and evidence-backed locator repair instead of blind retries.",
+    "needs": "None.",
+    "risk_notes": "Individual publisher. Only frontmatter and outline read."
+  },
+  {
+    "name": "test-strategy",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/test-strategy",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Produces a 13-section QA strategy document with pyramid diagnosis, risk matrix, entry/exit criteria, four-stage quality gates and KPI targets, plus a grep-based completeness check.",
+    "needs": "None.",
+    "risk_notes": "Individual publisher (not a known vendor). Reads optional .agents/qa-project-context.md and cross-references sibling skills by name. No scripts in the skill folder. SKILL.md read in full."
+  },
+  {
+    "name": "test-suite-curation",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/test-suite-curation",
+    "license": "MIT",
+    "roles": [
+      "principal-qa"
+    ],
+    "why": "Closest existing fit for owning the regression suite: coverage fingerprinting, duplicate clustering, CI-history mining and smoke/core/extended tiering with a deletion audit record.",
+    "needs": "Coverage tooling and CI run history for the target project.",
+    "risk_notes": "Individual publisher. Guides test deletion; the skill itself requires quarantine and human sign-off. Only frontmatter and outline read."
+  },
+  {
+    "name": "visual-testing",
+    "repo": "https://github.com/petrkindlmann/qa-skills",
+    "commit": "5087a3461d49da76b1e794d9b0bfbd23f38dc75b",
+    "path": "skills/visual-testing",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Visual regression with Playwright screenshots: baseline management, masking dynamic content, threshold tuning and a baseline review workflow.",
+    "needs": "@playwright/test; optional Chromatic, Percy or Argos accounts.",
+    "risk_notes": "Individual publisher. Mentions paid services (Chromatic, Percy, Argos) as options. Only frontmatter and outline read."
+  },
+  {
+    "name": "ideal-customer-profile",
+    "repo": "https://github.com/phuryn/pm-skills",
+    "commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
+    "path": "pm-go-to-market/skills/ideal-customer-profile",
+    "license": "MIT",
+    "roles": [
+      "market-research",
+      "sales"
+    ],
+    "why": "Derives the ICP from customer and survey data across firmographics, behaviours, jobs and pains, segmenting by customer value first.",
+    "needs": "Customer or survey data to work from.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Promotional further-reading links. More a framework checklist than a procedure."
+  },
+  {
+    "name": "pre-mortem",
+    "repo": "https://github.com/phuryn/pm-skills",
+    "commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
+    "path": "pm-execution/skills/pre-mortem",
+    "license": "MIT",
+    "roles": [
+      "boss"
+    ],
+    "why": "Risk analysis on a PRD or launch plan: Tigers, Paper Tigers and Elephants, launch-blocking versus fast-follow, with owner and date per mitigation.",
+    "needs": "None. Web search is optional.",
+    "risk_notes": "[read: SKILL.md in full] No scripts. Ends with 'Further Reading' links to the author's own newsletter (promotional, harmless)."
+  },
+  {
+    "name": "strategy-red-team",
+    "repo": "https://github.com/phuryn/pm-skills",
+    "commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
+    "path": "pm-execution/skills/strategy-red-team",
+    "license": "MIT",
+    "roles": [
+      "boss"
+    ],
+    "why": "Attacks the load-bearing assumptions of a PRD or roadmap and returns a fails-if condition, kill criterion and cheapest test for each.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Promotional further-reading links."
+  },
+  {
+    "name": "beachhead-segment",
+    "repo": "https://github.com/phuryn/product-engineering",
+    "commit": "8ebb50bb1b28dc9e8bc669199493e6020b808cc6",
+    "path": "product/skills/beachhead-segment",
+    "license": "MIT",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Scores candidate segments on burning pain, willingness to pay, winnable share and referral potential to choose the first market.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts."
+  },
+  {
+    "name": "competitor-analysis",
+    "repo": "https://github.com/phuryn/product-engineering",
+    "commit": "8ebb50bb1b28dc9e8bc669199493e6020b808cc6",
+    "path": "product/skills/competitor-analysis",
+    "license": "MIT",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Compact competitor and substitute analysis where every figure needs a source and read date, and 'no source found' replaces estimates.",
+    "needs": "Web search.",
+    "risk_notes": "[read: SKILL.md in full] No scripts."
+  },
+  {
+    "name": "release-gate",
+    "repo": "https://github.com/phuryn/product-engineering",
+    "commit": "8ebb50bb1b28dc9e8bc669199493e6020b808cc6",
+    "path": "ai-shipping/skills/release-gate",
+    "license": "MIT",
+    "roles": [
+      "boss"
+    ],
+    "why": "Strongest go/no-go discipline found: the owner says go, the agent supplies evidence, with rules on what counts as evidence and how to prove the reviewed build is the one serving.",
+    "needs": "None for the decision rules. Mechanisms assume Next.js, Supabase, Clerk, Netlify, Railway, Vitest, Playwright.",
+    "risk_notes": "[read: SKILL.md in full (references/ and receipts.md not read)] No scripts in this skill. Instructs running deploy and migration commands (railway, supabase CLI) as part of a release; that is its purpose but it must be scoped to the platform role."
+  },
+  {
+    "name": "value-curve",
+    "repo": "https://github.com/phuryn/product-engineering",
+    "commit": "8ebb50bb1b28dc9e8bc669199493e6020b808cc6",
+    "path": "product/skills/value-curve",
+    "license": "MIT",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Blue Ocean value curve on one segment's needs using importance times (1 minus satisfaction), with scores labelled as assumptions when no interviews exist.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts."
+  },
+  {
+    "name": "define-jtbd-canvas",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/define-jtbd-canvas",
+    "license": "Apache-2.0",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Jobs-to-be-done canvas that requires insights to trace back to research rather than assumption.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts."
+  },
+  {
+    "name": "define-opportunity-tree",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/define-opportunity-tree",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Opportunity solution tree from a measurable outcome down to opportunities, solutions and assumption tests, with template and example.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts."
+  },
+  {
+    "name": "define-prioritization-framework",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/define-prioritization-framework",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Runs every applicable framework (RICE, ICE, MoSCoW, weighted scoring, Kano), compares rankings, adds sensitivity analysis and refuses to score without inputs.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Framework detail sections seen as headings only."
+  },
+  {
+    "name": "deliver-acceptance-criteria",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/deliver-acceptance-criteria",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Turns a story or PRD slice into independently testable Given/When/Then criteria covering failure paths and non-functional needs, with a template and worked example.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Bundled references/ and evals/ fixtures not read."
+  },
+  {
+    "name": "deliver-launch-checklist",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/deliver-launch-checklist",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Cross-functional launch readiness checklist with owners, dates and explicit go/no-go criteria.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts."
+  },
+  {
+    "name": "discover-market-sizing",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/discover-market-sizing",
+    "license": "Apache-2.0",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Best TAM/SAM/SOM skill found: top-down, bottom-up, comparable and analogous methods reconciled, every figure traced to a source or stated assumption, sensitivity ranges and refusal rules.",
+    "needs": "Web search for market figures.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts."
+  },
+  {
+    "name": "foundation-build-risk-review",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/foundation-build-risk-review",
+    "license": "Apache-2.0",
+    "roles": [
+      "boss"
+    ],
+    "why": "Pre-commitment gate that names the riskiest assumption and returns a verdict (build small, validate first, pivot first, don't build yet), which covers deciding what not to build.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts. Adapted from bin1874/before-you-build-skill per its own attribution comment (upstream not checked)."
+  },
+  {
+    "name": "foundation-persona",
+    "repo": "https://github.com/product-on-purpose/pm-skills",
+    "commit": "3456e5e309f38ac2a66943f20d4aaf8031268dfb",
+    "path": "skills/foundation-persona",
+    "license": "Apache-2.0",
+    "roles": [
+      "market-research"
+    ],
+    "why": "Decision-usable product or buyer personas from one template, with assumptions and confidence levels made explicit.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts."
+  },
+  {
+    "name": "pulumi-best-practices",
+    "repo": "https://github.com/pulumi/agent-skills",
+    "commit": "cd1011fcefe65a980b09a4810bf8506df436d572",
+    "path": "pulumi/skills/pulumi-best-practices",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Pulumi skill with wrong-versus-right examples for Output/apply handling, ComponentResources, aliases for safe refactors, secrets config and preview-before-up.",
+    "needs": "pulumi CLI; PULUMI_ACCESS_TOKEN or `pulumi login`; cloud provider credentials",
+    "risk_notes": "No scripts. Explicitly warns against `pulumi up --yes` without a reviewed preview. Includes Codex agents/openai.yaml and use_cases.yaml. I read the first sections and grepped the rest. The sibling pulumi-overview skill was not selected because its `npx pulumi do` path can silently provision an ephemeral Pulumi Cloud agent account."
+  },
+  {
+    "name": "use-railway",
+    "repo": "https://github.com/railwayapp/railway-skills",
+    "commit": "29b37e471cfd9530de411d79b3b2d1e28d955d05",
+    "path": "plugins/railway/skills/use-railway",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Railway skill with 17 reference files covering deploy, config-as-code, variables, domains, databases (with analysis scripts), tracing and usage limits.",
+    "needs": "railway CLI (5.28+ for `railway api`); browser/device-code login or RAILWAY_API_TOKEN / RAILWAY_TOKEN; jq and curl for the legacy API script; python3 for database analysis scripts; optional hosted MCP at mcp.railway.com",
+    "risk_notes": "Deploys without preflight: on deploy or signup intent it says to run `railway up` directly, 'Do NOT ask the user to run railway login first', and the description says 'do not refuse' signup requests. Install instructions include `curl -fsSL agents.railway.com | sh` and `bash <(curl -fsSL https://railway.com/install.sh) --agents -y`, and `railway setup agent -y` which installs skills/MCP into the agent. Asks for attribution env vars RAILWAY_CALLER and RAILWAY_AGENT_SESSION on every CLI call. scripts/railway-api.sh reads the user token from ~/.railway/config.json and POSTs to https://backboard.railway.com/graphql/v2 with skill-id headers. Python scripts shell out to the railway CLI and SSH into database services. Frontmatter allowed-tools pre-allows Bash(curl:*), Bash(npx:*), Bash(python3:*). Do not vendor the plugin's hooks/auto-approve-api.sh, which auto-approves railway commands."
+  },
+  {
+    "name": "render-deploy",
+    "repo": "https://github.com/render-oss/skills",
+    "commit": "841f4e3f857f85c86719ca392aecd3a29c7df164",
+    "path": "skills/render-deploy",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Render skill that takes a repo through codebase analysis, render.yaml Blueprint authoring, plan review, authorised apply and workload verification, with explicit authorisation gates.",
+    "needs": "Render MCP server or render CLI (`render login` or RENDER_API_KEY); a pushed Git repository for Blueprint deploys",
+    "risk_notes": "No scripts. Best-behaved deploy skill reviewed: requires user authorisation before approving a Blueprint plan and says never to chain approval after planning. Instructs the agent to fetch current docs from render.com at run time (curl or fetch tool). Commits and pushes the Blueprint to the Git remote 'within the user's authorization'."
+  },
+  {
+    "name": "supabase",
+    "repo": "https://github.com/supabase/agent-skills",
+    "commit": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+    "path": "skills/supabase",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Supabase skill with a concrete security checklist (RLS, Data API exposure, service_role keys, SECURITY DEFINER, views) plus CLI, migration and MCP workflow guidance.",
+    "needs": "supabase CLI and/or Supabase MCP server; SUPABASE_ACCESS_TOKEN (scoped personal access token recommended); Docker for local development",
+    "risk_notes": "No scripts. Tells the agent to fetch https://supabase.com/changelog.md before implementing. references/skill-feedback.md can file a public GitHub issue on supabase/agent-skills after asking permission, but unlike Cloudflare's version it does not require the user to approve the exact text. Uses `supabase db pull ... --yes`. Description triggers on 'ANY task involving Supabase'."
+  },
+  {
+    "name": "supabase-postgres-best-practices",
+    "repo": "https://github.com/supabase/agent-skills",
+    "commit": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+    "path": "skills/supabase-postgres-best-practices",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer",
+      "platform-engineer"
+    ],
+    "why": "Thirty-plus prioritised rule files with incorrect/correct SQL for indexing, locking, RLS, pagination, connection pooling and EXPLAIN.",
+    "risk_notes": "Prose only (36 markdown files). Description says 'for Postgres running anywhere'; some rules carry Supabase-specific notes."
+  },
+  {
+    "name": "fly",
+    "repo": "https://github.com/superfly/skills",
+    "commit": "ba182c9ba6ffa5b107d5f7c77e0a2c37eeef89d3",
+    "path": "plugins/fly/skills/fly",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Fly.io skill covering launch, deploy, fly.toml, Machines scaling, volumes, secrets, certificates and custom domains, Managed Postgres, plus a safety reference.",
+    "needs": "flyctl; browser login or FLY_API_TOKEN; optional sprite CLI with SPRITE_TOKEN; optional hosted MCP at mcp.fly.io",
+    "risk_notes": "No scripts. On deploy intent it runs `fly deploy` / `fly launch` directly and says 'Do not ask the user to run fly auth login separately first'. Install instructions pipe curl to sh (https://fly.io/install.sh and https://sprites.dev/install.sh). Also covers signup and Sprites remote sandboxes, which is wider than deployment."
+  },
+  {
+    "name": "create-rfc",
+    "repo": "https://github.com/tech-leads-club/agent-skills",
+    "commit": "fb02f17d15f40f5410bf0706a79d9226a31b82ce",
+    "path": "packages/skills-catalog/skills/(creation)/create-rfc",
+    "license": "CC-BY-4.0",
+    "roles": [
+      "principal-engineer"
+    ],
+    "why": "Only solid RFC skill found: requires weighted decision criteria stated before options, explicit assumptions with confidence, a do-nothing option and a quality checklist.",
+    "risk_notes": "CC-BY-4.0 requires attribution when vendored. Directory name contains parentheses. Uses an 'AskQuestion' interactive tool and assumes a human answers; trilingual trigger boilerplate."
+  },
+  {
+    "name": "create-technical-design-doc",
+    "repo": "https://github.com/tech-leads-club/agent-skills",
+    "commit": "fb02f17d15f40f5410bf0706a79d9226a31b82ce",
+    "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
+    "license": "CC-BY-4.0 (per repo README; not stated in the file)",
+    "roles": [
+      "principal-engineer"
+    ],
+    "why": "Most complete design-doc skill found: mandatory versus optional sections by project size, keeps docs at contract/decision level, covers rollback, monitoring and alternatives.",
+    "risk_notes": "1,484-line SKILL.md, a heavy context load. Frontmatter name is 'technical-design-doc-creator', which does not match the directory name. Opens with a persona line. Interactive question flow assumes a human. Attribution required."
+  },
+  {
+    "name": "playwright-skill",
+    "repo": "https://github.com/testdino-hq/playwright-skill",
+    "commit": "178d1cb537604279d7b54500c4823a6db42b9de6",
+    "path": ".",
+    "license": "MIT",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Most complete and current Playwright Test reference found (states verification against 1.64): locators, fixtures, auth, API, visual, a11y, CI, flake handling, plus a qa/ pack for test design from a ticket, bug reports and test review.",
+    "needs": "Node.js, @playwright/test.",
+    "risk_notes": "Vendor-published (TestDino). Skill root is the repo root with nested sub-skills (core, ci, pom, qa, migration, playwright-cli, frontend); about 118 files and 58k lines, so vendor selectively if context matters. One guide (core/dynamic-test-selection.md) shows an example that calls api.testdino.com using TESTDINO_* env vars; it is illustrative, not executed. Root and qa SKILL.md read; reference guides not read."
+  },
+  {
+    "name": "demo-script",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/demo-script",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Demo scripts that open with the buyer's problem, choose live, slide or recorded format, and cover environment setup and bake-off checklists.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "discovery-call",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/discovery-call",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "SPIN-derived call structure with timings, impact quantification, a qualification framework and multi-stakeholder handling.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "objection-handling",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/objection-handling",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Acknowledge-Clarify-Respond-Confirm framework with a playbook by objection category and separate handling for email versus live calls.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "outbound-sequence",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/outbound-sequence",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Multi-channel cadence design (14, 30 and 60 day plays) with capacity maths and channel choice by persona.",
+    "needs": "None to design. A sequencer (Outreach, Apollo, Instantly or similar) is needed to run.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "proposal-pricing",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/proposal-pricing",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Proposal versus quote versus SOW, section-by-section proposal structure and deal pricing presentation.",
+    "needs": "None.",
+    "risk_notes": "[read: frontmatter, first ~20 lines and headings only] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "sales-context",
+    "repo": "https://github.com/TheCraigHewitt/skills",
+    "commit": "fdbf39b61fbc8cb7cea67949bfb5e8fc567bbc51",
+    "path": "sales/sales-context",
+    "license": "MIT",
+    "roles": [
+      "sales"
+    ],
+    "why": "Foundation skill that builds the ICP, anti-ICP, value proposition, sales motion and proof-point file the rest of this pack reads.",
+    "needs": "None.",
+    "risk_notes": "[read: first 40-110 lines plus all headings] No scripts, no network. Publisher is a single individual; last commit 2026-05-21 (about six months old). Benchmark figures in this pack are stated without sources where I checked (outbound-sequence)."
+  },
+  {
+    "name": "design-postgres-tables",
+    "repo": "https://github.com/timescale/pg-aiguide",
+    "commit": "1aef6e452b97fae580d57677a807fd0d601ddc7b",
+    "path": "skills/design-postgres-tables",
+    "license": "Apache-2.0",
+    "roles": [
+      "principal-engineer",
+      "senior-engineer"
+    ],
+    "why": "Dense, opinionated Postgres schema rules: types to avoid, FK indexing, NULLS NOT DISTINCT, partitioning, update-heavy and insert-heavy table design.",
+    "risk_notes": "Single file. Two mild mentions of TimescaleDB as an extension; no steering beyond that. wshobson/agents ships a near-copy; this is the upstream."
+  },
+  {
+    "name": "postgres-database-migration",
+    "repo": "https://github.com/timescale/pg-aiguide",
+    "commit": "1aef6e452b97fae580d57677a807fd0d601ddc7b",
+    "path": "skills/postgres-database-migration",
+    "license": "Apache-2.0 (repo LICENSE; not stated in the file)",
+    "roles": [
+      "staff-engineer",
+      "senior-engineer"
+    ],
+    "why": "Lock-level reference for every common DDL operation plus safe patterns, batched backfills, validation queries and rollback planning.",
+    "needs": "psql access to a Postgres instance for the validation queries",
+    "risk_notes": "Prose plus three reference files. Recommends testing on a database fork 'using your provider's fork feature' but gives a no-fork path too."
+  },
+  {
+    "name": "differential-review",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/differential-review/skills/differential-review",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "security-engineer",
+      "principal-qa"
+    ],
+    "why": "Security-focused diff review that quantifies blast radius by counting callers, checks test coverage of changed code and uses git history to catch regressions.",
+    "needs": "git.",
+    "risk_notes": "CC BY-SA 4.0 share-alike. Refers to a namespaced subagent `differential-review:adversarial-modeler` defined in the plugin's agents/ directory; vendor the whole plugin or accept the documented fallback of reading adversarial.md. First 120 of 225 lines read."
+  },
+  {
+    "name": "fp-check",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/fp-check/skills/fp-check",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Structured true-positive or false-positive verdict per suspected finding, which keeps scanner and LLM noise out of reports.",
+    "needs": "None.",
+    "risk_notes": "The plugin (one level up) ships prompt-type Stop and SubagentStop hooks that block the agent from finishing until every phase is evidenced, and three subagents; vendoring only the skill folder drops them. Phase 4 has the agent write proof-of-concept tests against your own code. CC BY-SA 4.0 share-alike. First 60 of 112 lines read; hooks.json read."
+  },
+  {
+    "name": "modern-python",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/modern-python/skills/modern-python",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Current Python project setup with uv, ruff, ty and pytest, plus migration paths from pip, Poetry, flake8/black and mypy.",
+    "needs": "uv, ruff, ty",
+    "risk_notes": "Share-alike licence: modified copies must stay CC-BY-SA with attribution. Ships config templates (pre-commit, dependabot) but no executable scripts. Strongly opinionated (replace mypy with ty, pre-commit with prek)."
+  },
+  {
+    "name": "property-based-testing",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/property-based-testing/skills/property-based-testing",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "staff-qa"
+    ],
+    "why": "Property catalogue with strength ordering and the two ways a property test asserts nothing; honest about when example tests are the right answer.",
+    "needs": "Hypothesis or fast-check if adopted",
+    "risk_notes": "Share-alike licence, attribution required. Prose only. Includes Solidity (Echidna/Medusa) material that is irrelevant for web stacks."
+  },
+  {
+    "name": "semgrep",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/static-analysis/skills/semgrep",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Scripted Semgrep run that enforces --metrics=off, selects rulesets per language, merges SARIF and reports what failed or was skipped.",
+    "needs": "semgrep CLI, git, Python 3; Semgrep Pro login optional.",
+    "risk_notes": "run-scans.sh does `git clone --depth 1` of third-party rule repositories (Trail of Bits, 0xdea, Decurity, elttam and others listed in references/rulesets.md) at scan time, so it needs network and executes rules from unpinned repos. Has a hard approval gate via AskUserQuestion that must be answered by an operator or the boss agent. CC BY-SA 4.0 share-alike. First 95 of 273 lines read; scripts skimmed by grep."
+  },
+  {
+    "name": "sharp-edges",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/sharp-edges/skills/sharp-edges",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "Finds insecure-by-default APIs and configuration footguns, with per-language references; the closest vendorable substitute for Trail of Bits' insecure-defaults, which is no longer a skill.",
+    "needs": "None.",
+    "risk_notes": "Read-only tools (Read, Grep, Glob). References a `sharp-edges-analyzer` subagent from the plugin's agents/ directory. CC BY-SA 4.0 share-alike. First 60 of 293 lines read."
+  },
+  {
+    "name": "variant-analysis",
+    "repo": "https://github.com/trailofbits/skills",
+    "commit": "149d7b21f4067765b82e67029730b42d228ef4b4",
+    "path": "plugins/variant-analysis/skills/variant-analysis",
+    "license": "CC-BY-SA-4.0",
+    "roles": [
+      "security-engineer"
+    ],
+    "why": "After one bug is found, generalises its root cause one step at a time to find every other instance and ends with a CI rule to prevent regression.",
+    "needs": "ripgrep; Semgrep or CodeQL optional.",
+    "risk_notes": "Mentions a plugin workflow command (/variant-analysis:variants) that is not in the skill folder; the manual five-step path works without it. CC BY-SA 4.0 share-alike. First 60 of 76 lines read."
+  },
+  {
+    "name": "redis-best-practices",
+    "repo": "https://github.com/upstash/skills",
+    "commit": "752c0458d8f697c103bf6fd468d9d7c73e4e4014",
+    "path": "skills/redis-best-practices",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Single-file Redis production rules that apply to any Redis-compatible deployment (open source, Valkey, ElastiCache, Memorystore, Upstash), starting from the cache-versus-store decision.",
+    "needs": "None; a Redis endpoint to apply the advice",
+    "risk_notes": "No scripts. Published by Upstash and has an Upstash-specific section, so expect mild vendor tilt. I read the opening sections only (about 25 of 198 lines) plus the frontmatter."
+  },
+  {
+    "name": "composition-patterns",
+    "repo": "https://github.com/vercel-labs/agent-skills",
+    "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+    "path": "skills/composition-patterns",
+    "license": "MIT (frontmatter and README; no LICENSE file in repo)",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Component-API design rules: compound components over boolean props, provider-owned state, React 19 API changes.",
+    "risk_notes": "Prose only. Frontmatter name is 'vercel-composition-patterns', which differs from the directory name."
+  },
+  {
+    "name": "react-best-practices",
+    "repo": "https://github.com/vercel-labs/agent-skills",
+    "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+    "path": "skills/react-best-practices",
+    "license": "MIT (frontmatter and README; no LICENSE file in repo)",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Seventy-odd prioritised React/Next.js performance rules from Vercel (waterfalls, bundle size, server caching, re-renders) with incorrect/correct code.",
+    "risk_notes": "Prose only (rules/ plus metadata.json). None found."
+  },
+  {
+    "name": "web-design-guidelines",
+    "repo": "https://github.com/vercel-labs/agent-skills",
+    "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+    "path": "skills/web-design-guidelines",
+    "license": "MIT (README; not stated in the file)",
+    "roles": [
+      "senior-engineer",
+      "staff-designer"
+    ],
+    "why": "UI review against Vercel's Web Interface Guidelines, with the rule set bundled and pinned by commit and SHA-256 and an explicit 'do not fetch rules from the network'.",
+    "risk_notes": "Prose only. The 'Updating the Guidelines' section documents a curl download for maintainers; not part of normal use."
+  },
+  {
+    "name": "deployments-cicd",
+    "repo": "https://github.com/vercel/vercel-plugin",
+    "commit": "8bb46159108f0cd6a749959b20c1411257411090",
+    "path": "skills/deployments-cicd",
+    "license": "Apache-2.0",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Official Vercel skill covering preview/production deploys, prebuilt builds, staged promote, rollback, deployment checks and GitHub Actions/GitLab/Bitbucket pipelines with concrete commands.",
+    "needs": "vercel CLI; `vercel login` or VERCEL_TOKEN plus VERCEL_ORG_ID and VERCEL_PROJECT_ID; optional VERCEL_AUTOMATION_BYPASS_SECRET for testing protected deployments",
+    "risk_notes": "No scripts in the skill folder. Vendor only this folder: the surrounding plugin ships hooks with telemetry on by default (VERCEL_PLUGIN_TELEMETRY=off disables) and a hosted MCP config. Frontmatter carries non-standard keys (metadata.pathPatterns, validate, retrieval) and the folder has a .vercel.approvers file; text references plugin slash commands (/deploy, /status, /env) that will not exist. Skill states a project's first deploy goes to production. CI examples run npm install -g vercel."
+  },
+  {
+    "name": "ddia-systems",
+    "repo": "https://github.com/wondelai/skills",
+    "commit": "c5265583b1a9740f06831e1d3e89b35bba3eb430",
+    "path": "ddia-systems",
+    "license": "MIT",
+    "roles": [
+      "principal-engineer"
+    ],
+    "why": "Only substantive skill found for data-system and scalability reasoning: storage engines, replication, partitioning, isolation levels, batch/stream, fault tolerance.",
+    "risk_notes": "Book-derived summary of 'Designing Data-Intensive Applications'. Contains an Amazon affiliate link (tag=wondelai00-20) and a 'score it out of 10' gimmick; strip both before vendoring."
+  },
+  {
+    "name": "auth-implementation-patterns",
+    "repo": "https://github.com/wshobson/agents",
+    "commit": "42203085cfc5736204bf0f6d436dff7e1da0bf3f",
+    "path": "plugins/developer-essentials/skills/auth-implementation-patterns",
+    "license": "MIT",
+    "roles": [
+      "senior-engineer"
+    ],
+    "why": "Vendor-neutral JWT, session, OAuth2 and RBAC patterns with a 568-line worked-examples reference; the only licensed generic auth skill found.",
+    "risk_notes": "Prose only. Textbook depth and a 'Master...' style description; examples read secrets from process.env as documentation, nothing executes. Treat as a stopgap (see gaps)."
+  },
+  {
+    "name": "parallel-feature-development",
+    "repo": "https://github.com/wshobson/agents",
+    "commit": "42203085cfc5736204bf0f6d436dff7e1da0bf3f",
+    "path": "plugins/agent-teams/skills/parallel-feature-development",
+    "license": "MIT",
+    "roles": [
+      "staff-engineer"
+    ],
+    "why": "Directly addresses splitting a feature across concurrent implementers: one-owner-per-file rule, read-only interface contract files, vertical versus horizontal integration, branch strategy.",
+    "risk_notes": "Prose plus two reference files. None found."
+  },
+  {
+    "name": "secrets-management",
+    "repo": "https://github.com/wshobson/agents",
+    "commit": "42203085cfc5736204bf0f6d436dff7e1da0bf3f",
+    "path": "plugins/cicd-automation/skills/secrets-management",
+    "license": "MIT",
+    "roles": [
+      "platform-engineer"
+    ],
+    "why": "Only cross-vendor secrets skill of usable quality found: Vault, AWS Secrets Manager, Azure Key Vault, Google Secret Manager, GitHub and GitLab CI secrets, and rotation patterns.",
+    "needs": "Whichever secret store is used: vault CLI, aws CLI, az CLI or gcloud, with matching credentials",
+    "risk_notes": "No scripts. Generic, template-style content; I read the section headings and grepped for risky patterns, not the full body. Examples include a Vault dev server with VAULT_TOKEN='root', which is fine for local demos but must not be copied to production. No official Doppler, Infisical, 1Password or Vault skill was found to prefer."
+  }
+]

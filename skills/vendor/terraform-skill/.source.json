@@ -1,0 +1,8 @@
+{
+  "name": "terraform-skill",
+  "repo": "https://github.com/antonbabenko/terraform-skill",
+  "commit": "f5a195992d84c8fb075b0176d666967cd07d2081",
+  "path": "skills/terraform-skill",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

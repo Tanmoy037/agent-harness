@@ -1,0 +1,8 @@
+{
+  "name": "deployments-cicd",
+  "repo": "https://github.com/vercel/vercel-plugin",
+  "commit": "8bb46159108f0cd6a749959b20c1411257411090",
+  "path": "skills/deployments-cicd",
+  "license": "Apache-2.0",
+  "vendored": "2026-11-21"
+}

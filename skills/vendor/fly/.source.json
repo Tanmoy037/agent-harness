@@ -1,0 +1,8 @@
+{
+  "name": "fly",
+  "repo": "https://github.com/superfly/skills",
+  "commit": "ba182c9ba6ffa5b107d5f7c77e0a2c37eeef89d3",
+  "path": "plugins/fly/skills/fly",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

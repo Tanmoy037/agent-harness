@@ -1,0 +1,8 @@
+{
+  "name": "use-railway",
+  "repo": "https://github.com/railwayapp/railway-skills",
+  "commit": "29b37e471cfd9530de411d79b3b2d1e28d955d05",
+  "path": "plugins/railway/skills/use-railway",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

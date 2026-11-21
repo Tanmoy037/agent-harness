@@ -1,0 +1,11 @@
+{
+  "name": "harness-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser tooling the agents use: the site-study capture tool and playwright-cli.",
+  "dependencies": {
+    "@playwright/cli": "0.1.25",
+    "playwright": "1.65.1"
+  }
+}

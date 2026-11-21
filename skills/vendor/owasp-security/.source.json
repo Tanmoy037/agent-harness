@@ -1,0 +1,8 @@
+{
+  "name": "owasp-security",
+  "repo": "https://github.com/agamm/claude-code-owasp",
+  "commit": "1ae29cb22518560e3625d77f2ae64f61647d9201",
+  "path": ".claude/skills/owasp-security",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}

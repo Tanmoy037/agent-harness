@@ -1,0 +1,8 @@
+{
+  "name": "redis-best-practices",
+  "repo": "https://github.com/upstash/skills",
+  "commit": "752c0458d8f697c103bf6fd468d9d7c73e4e4014",
+  "path": "skills/redis-best-practices",
+  "license": "MIT",
+  "vendored": "2026-11-21"
+}
