@@ -82,7 +82,7 @@ Acceptance criteria are statements a reviewer can check by running something: th
 
 ### 8. Check coverage
 
-Build a table from the inventory in step 1 to task ids. Every row must have at least one task. Rows with none are missing tasks; tasks that appear in no row are work nobody asked for, so remove them or justify them. Put the table in the implementation plan, because the boss reviews the plan for exactly this.
+Build a table from the inventory in step 1 to task ids. Every row must have at least one task. Rows with none are missing tasks; tasks that appear in no row are work nobody asked for, so remove them or justify them. Put the table in the implementation plan, because the director reviews the plan for exactly this.
 
 ### 9. Check the graph
 

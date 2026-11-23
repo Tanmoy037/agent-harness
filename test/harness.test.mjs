@@ -22,12 +22,12 @@ process.env.GIT_CONFIG_NOSYSTEM = '1';
 
 const { parseArgs, slug, Semaphore } = await import('../src/util.mjs');
 const { validateTasks } = await import('../src/schemas.mjs');
-const { validateModes, DEFAULT_MODES, needsHuman, hasUI, modesFromFlags } = await import('../src/modes.mjs');
+const { validateModes, DEFAULT_MODES, needsHuman, hasUI, modesFromFlags, normalizeModes } = await import('../src/modes.mjs');
 const { claudePermissions, codexPermissions, agentEnv } = await import('../src/permissions.mjs');
 const gitlib = await import('../src/git.mjs');
 const { runJsonLines } = await import('../src/runners/proc.mjs');
 const memory = await import('../src/memory.mjs');
-const { loadTeam, findSkill, rolePrompt, resolveEngine } = await import('../src/team.mjs');
+const { loadTeam, findSkill, rolePrompt, resolveEngine, getRole } = await import('../src/team.mjs');
 const { ROLE_IDS } = await import('../src/schemas.mjs');
 
 function harness(args, { cwd, env = {} } = {}) {
@@ -86,7 +86,18 @@ test('modes validate and decide gates', () => {
   assert.equal(hasUI(validateModes({ ...m, productTypes: ['backend'] })), false);
   assert.throws(() => validateModes({ ...m, access: 'yolo' }), /Unknown access mode/);
   assert.throws(() => validateModes({ ...m, engineers: 40 }), /1 to 8/);
-  assert.deepEqual(modesFromFlags({ boss: 'claude', type: 'web-app, backend', engineers: '2' }), { bossEngine: 'claude', productTypes: ['web-app', 'backend'], engineers: 2 });
+  assert.deepEqual(modesFromFlags({ director: 'claude', type: 'web-app, backend', engineers: '2' }), { directorEngine: 'claude', productTypes: ['web-app', 'backend'], engineers: 2 });
+});
+
+test('the director role keeps accepting its old name, boss', () => {
+  assert.equal(modesFromFlags({ boss: 'claude' }).directorEngine, 'claude');
+  assert.equal(modesFromFlags({ director: 'codex', boss: 'claude' }).directorEngine, 'codex');
+  const legacy = { ...DEFAULT_MODES, bossEngine: 'claude' };
+  delete legacy.directorEngine;
+  assert.equal(validateModes(legacy).directorEngine, 'claude');
+  assert.equal(normalizeModes({ directorEngine: 'codex', bossEngine: 'claude' }).directorEngine, 'codex');
+  const team = loadTeam();
+  assert.equal(getRole(team, 'boss'), getRole(team, 'director'));
 });
 
 test('permissions: go-live commands stay blocked until unlocked, credentials always', () => {
@@ -242,8 +253,8 @@ test('team registry: every role has a prompt and every assigned skill is install
     for (const skill of role.skills) assert.ok(findSkill(skill), `${role.id}: skill "${skill}" is installed`);
   }
   const modes = validateModes({ ...DEFAULT_MODES });
-  assert.equal(resolveEngine(team, team.roles.boss, modes).kind, 'codex');
-  assert.equal(resolveEngine(team, team.roles.boss, { ...modes, bossEngine: 'claude' }).model, 'fable');
+  assert.equal(resolveEngine(team, team.roles.director, modes).kind, 'codex');
+  assert.equal(resolveEngine(team, team.roles.director, { ...modes, directorEngine: 'claude' }).model, 'fable');
   assert.equal(resolveEngine(team, team.roles['senior-engineer'], modes).model, 'opus');
   for (const engine of Object.values(team.engines)) assert.equal(engine.effort, 'high');
 });

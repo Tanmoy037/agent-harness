@@ -156,7 +156,7 @@ Rules for the breakdown: each task is one engineer's coherent piece of work that
   await run.gate('architecture', {
     phase: 'architecture',
     title: 'Architecture and plan',
-    summary: 'The architecture, test strategy, threat model, deployment plan and task breakdown are ready and the boss has reviewed them.',
+    summary: 'The architecture, test strategy, threat model, deployment plan and task breakdown are ready and the director has reviewed them.',
     artifacts: [E('architecture.md'), E('implementation-plan.md'), run.doc('platform/deployment-plan.md'), run.doc('security/threat-model.md')],
   });
 }

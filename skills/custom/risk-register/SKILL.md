@@ -7,7 +7,7 @@ description: Use when writing the brief or PRD, reviewing a phase, triaging find
 
 A risk is something that has not happened yet and might. Once it has happened it is an issue and belongs in a finding or a fix task. The register exists so that risks named early are still in view when the release decision is made, instead of being mentioned once in a document nobody reopens.
 
-Keep it at `product/risk-register.md` in the team documents. The boss owns the file. Other roles report risks in their findings and handoffs; the boss enters them. It is a living document: update it at every review point below, and never delete a row.
+Keep it at `product/risk-register.md` in the team documents. The director owns the file. Other roles report risks in their findings and handoffs; the director enters them. It is a living document: update it at every review point below, and never delete a row.
 
 ## 1. What belongs in it
 

@@ -13,7 +13,7 @@ import * as memory from '../memory.mjs';
  * principal engineer divides it into areas, several staff engineers each go deep on one
  * area in parallel, platform, QA and security map how it is deployed, tested and secured,
  * and the principal assembles a navigable knowledge base. Every later agent starts from
- * that map instead of rediscovering the codebase. The boss is briefed last and can send
+ * that map instead of rediscovering the codebase. The director is briefed last and can send
  * the engineers back for more depth. There is no time pressure in this phase.
  */
 
@@ -242,7 +242,7 @@ Finally, judge whether the map is good enough to plan the owner's request safely
     throw new HarnessError(`The survey finished without ${K('INDEX.md')}. See the transcript of the synthesis step.`);
   }
 
-  // 4. Brief the boss. The boss can send the engineers back before any planning starts.
+  // 4. Brief the director. The director can send the engineers back before any planning starts.
   await run.reviewLoop('survey', {
     title: 'Codebase briefing',
     artifacts: [K('INDEX.md'), K('CODEBASE.md'), K('deployment.md'), K('testing.md'), K('security-baseline.md')].filter((p) => fs.existsSync(run.abs(p))),

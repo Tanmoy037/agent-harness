@@ -12,7 +12,7 @@ import * as memory from '../memory.mjs';
  *
  * The order is deliberate: study real products that real customers use, work out the
  * experience, propose directions that are actually different from each other, let the
- * owner (or the boss) choose, and only then build the design system and screens that the
+ * owner (or the director) choose, and only then build the design system and screens that the
  * engineers will implement. Nothing is designed from a blank page or from habit.
  */
 
@@ -122,7 +122,7 @@ Then write ${D('directions.md')}: the three directions side by side with their s
         task: `The designers propose three directions. Open the rendered screenshots in each direction's folder and read the comparison. Choose the one that best serves these users and this brief and that a customer would not mistake for a generic template. Name it exactly, give your reasoning, and state any changes you want. You may combine elements only if the result stays coherent.`,
         readFirst: [D('directions.md'), D('reference-study.md'), ...context],
       });
-      choice = { by: 'boss', text: `${decision.choice}. ${decision.reasoning}${decision.changes_requested ? ` Changes requested: ${decision.changes_requested}` : ''}` };
+      choice = { by: 'director', text: `${decision.choice}. ${decision.reasoning}${decision.changes_requested ? ` Changes requested: ${decision.changes_requested}` : ''}` };
     }
   }
   state.set('design.choice', choice);

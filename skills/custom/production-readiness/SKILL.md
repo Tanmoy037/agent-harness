@@ -98,4 +98,4 @@ The runbook is ready when someone who did not build the product could do each of
 
 ## Verdict
 
-Finish the review with three lists: items not met that must be fixed before go-live (report these as blocker or major findings with their owner), items that can only be verified at first deployment (these become the first-deployment checklist in the runbook, each with the command that verifies it), and items accepted as risks with the reason. The boss's go / no-go decision reads these lists, so make each entry specific enough to act on.
+Finish the review with three lists: items not met that must be fixed before go-live (report these as blocker or major findings with their owner), items that can only be verified at first deployment (these become the first-deployment checklist in the runbook, each with the command that verifies it), and items accepted as risks with the reason. The director's go / no-go decision reads these lists, so make each entry specific enough to act on.

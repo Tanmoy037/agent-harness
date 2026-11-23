@@ -4,7 +4,7 @@
  * Two independent ideas:
  *   - the ACCESS mode decides how freely agents act inside the product folder;
  *   - the go-live lock blocks deploy and publish commands until the release is approved
- *     (by the person, or by the boss when the approvals mode is fully autonomous).
+ *     (by the person, or by the director when the approvals mode is fully autonomous).
  * Deny rules apply in every Claude permission mode, including bypass.
  */
 
@@ -96,7 +96,7 @@ const CLAUDE_MODE = { guarded: 'auto', bypass: 'bypassPermissions', strict: 'don
 export function claudePermissions({ access, goliveUnlocked = false, readOnly = false }) {
   const deny = [...ALWAYS_DENY];
   if (!goliveUnlocked) deny.push(...GOLIVE_DENY);
-  // A decision-only step (the boss reviewing, triaging, answering) must not change the product.
+  // A decision-only step (the director reviewing, triaging, answering) must not change the product.
   if (readOnly) deny.push('Edit', 'Write', 'NotebookEdit');
   const settings = { permissions: { deny } };
   if (access === 'strict') settings.permissions.allow = [...STRICT_ALLOW];

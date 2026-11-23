@@ -7,7 +7,7 @@ import { PauseRun } from '../run.mjs';
 
 /**
  * Launch material (marketing and sales), then release: the platform engineer prepares
- * delivery, security reviews it, the boss makes the go / no-go call, and nothing is
+ * delivery, security reviews it, the director makes the go / no-go call, and nothing is
  * deployed or published until the go-live approval the owner's chosen mode requires.
  */
 
@@ -96,16 +96,16 @@ Do not deploy, publish, push or create any cloud resource in this step: those co
   });
   state.event('release-decision', { verdict: decision.verdict });
   if (decision.verdict !== 'go') {
-    throw new PauseRun(`The boss's release decision is no-go: ${truncate(decision.summary, 400)}\nEverything built so far is on branch ${state.data.branch}. Run "harness resume" after addressing it, or deploy yourself from ${PL('runbook.md')}.`);
+    throw new PauseRun(`The director's release decision is no-go: ${truncate(decision.summary, 400)}\nEverything built so far is on branch ${state.data.branch}. Run "harness resume" after addressing it, or deploy yourself from ${PL('runbook.md')}.`);
   }
 
   await run.gate('golive', {
     phase: 'release',
     title: 'Go live',
-    summary: `The boss recommends going live: ${decision.summary}${decision.conditions?.length ? `\n\nConditions:\n${decision.conditions.map((x) => `- ${x}`).join('\n')}` : ''}\n\nApproving lets the platform engineer deploy and publish with the credentials available on this machine.`,
+    summary: `The director recommends going live: ${decision.summary}${decision.conditions?.length ? `\n\nConditions:\n${decision.conditions.map((x) => `- ${x}`).join('\n')}` : ''}\n\nApproving lets the platform engineer deploy and publish with the credentials available on this machine.`,
     artifacts: [PL('runbook.md'), run.doc('qa/product-verification.md'), run.doc('security/security-review.md')].filter(exists),
   });
-  if (!needsHuman(modes, 'golive')) info('Approvals mode is fully autonomous: the boss\'s go decision authorises the deployment.');
+  if (!needsHuman(modes, 'golive')) info('Approvals mode is fully autonomous: the director\'s go decision authorises the deployment.');
 
   const deploy = await run.work({
     id: 'release.deploy',

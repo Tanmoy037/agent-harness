@@ -32,7 +32,7 @@ const DEFAULT_OPTIONS = {
 
 /**
  * One run of the team on one request. Phases call `work` (an agent does something and
- * reports) and `decide` (the boss returns a decision). Both are memoised in the run
+ * reports) and `decide` (the director returns a decision). Both are memoised in the run
  * state, so a resumed run continues from the first unfinished step.
  */
 export class Run {
@@ -255,7 +255,7 @@ export class Run {
         continue;
       }
 
-      // An agent may stop to ask. The boss answers what it can; the owner is asked only what only they can decide.
+      // An agent may stop to ask. The director answers what it can; the owner is asked only what only they can decide.
       const report = res.structured;
       if (spec.kind !== 'decision' && report.status === 'needs_input' && report.questions?.length && questionRounds < MAX_QUESTION_ROUNDS) {
         questionRounds++;
@@ -295,9 +295,9 @@ export class Run {
     return this.exec({ kind: 'work', ...spec }); // synup-ignore: method name, not eval/exec
   }
 
-  /** The boss (or another role) returns a decision without changing anything. */
+  /** The director (or another role) returns a decision without changing anything. */
   decide(spec) {
-    return this.exec({ role: 'boss', kind: 'decision', ...spec }); // synup-ignore: method name, not eval/exec
+    return this.exec({ role: 'director', kind: 'decision', ...spec }); // synup-ignore: method name, not eval/exec
   }
 
   /** Run steps in parallel. All are allowed to finish (and be saved) before the first failure is raised. */
@@ -319,7 +319,7 @@ export class Run {
     let answered = [];
     let forOwner = questions;
 
-    if (role.id !== 'boss') {
+    if (role.id !== 'director') {
       const decision = await this.decide({
         id: `${spec.id}.questions.r${round}`,
         title: `Answer questions from the ${role.title}`,
@@ -332,7 +332,7 @@ export class Run {
       forOwner = decision.ask_owner ?? [];
     }
 
-    const out = answered.map((a) => `Q: ${a.question}\nA (from the boss): ${a.answer}`);
+    const out = answered.map((a) => `Q: ${a.question}\nA (from the director): ${a.answer}`);
     for (const question of forOwner) {
       let answer = '';
       if (this.ui.interactive) {
@@ -353,8 +353,8 @@ export class Run {
   }
 
   /**
-   * The boss reviews a phase. On "revise", each named role gets the instructions and
-   * reworks its output, then the boss reviews again, up to the configured rounds.
+   * The director reviews a phase. On "revise", each named role gets the instructions and
+   * reworks its output, then the director reviews again, up to the configured rounds.
    */
   async reviewLoop(phase, { title, artifacts = [], guidance = '', ownerFeedback = null, idSuffix = '' }) {
     let review;
@@ -381,7 +381,7 @@ export class Run {
       this.state.event('review', { phase, round, verdict: review.verdict, revisions: review.revisions?.length ?? 0 });
       if (review.verdict === 'approve' || !review.revisions?.length) return { ...review, verdict: 'approve' };
 
-      this.log(c.yellow(`↺ Boss sent ${review.revisions.length} item(s) back: ${truncate(review.summary, 160)}`));
+      this.log(c.yellow(`↺ Director sent ${review.revisions.length} item(s) back: ${truncate(review.summary, 160)}`));
       const byRole = new Map();
       for (const r of review.revisions) byRole.set(r.role, [...(byRole.get(r.role) ?? []), r.instructions]);
       await this.all(
@@ -391,7 +391,7 @@ export class Run {
             role: roleId,
             title: `Revise after review: ${title}`,
             resumeFrom: this.state.get(`last.${phase}.${roleId}`),
-            task: `The boss reviewed "${title}" and sent the following back to you. Address every point, updating your documents and files in place, then verify the result.`,
+            task: `The director reviewed "${title}" and sent the following back to you. Address every point, updating your documents and files in place, then verify the result.`,
             feedback: items.map((t, i) => `${i + 1}. ${t}`).join('\n'),
             readFirst: artifacts,
           }),
@@ -407,11 +407,11 @@ export class Run {
 
   /**
    * An approval point. If the chosen approvals mode gives this gate to the owner, the run
-   * waits for them; their feedback goes back through the boss as revisions. Otherwise the
-   * boss's own review stands.
+   * waits for them; their feedback goes back through the director as revisions. Otherwise the
+   * director's own review stands.
    */
   async gate(gate, { phase, title, summary, artifacts = [] }) {
-    if (!needsHuman(this.modes, gate)) return { approved: true, by: 'boss' };
+    if (!needsHuman(this.modes, gate)) return { approved: true, by: 'director' };
     if (this.state.data.gates[gate]?.approved) return this.state.data.gates[gate];
 
     for (let round = 1; ; round++) {

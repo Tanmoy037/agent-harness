@@ -52,7 +52,7 @@ Write "could not verify" where you could not; an unverified must-have is a risk 
 
 ### Licence guide
 
-This is an engineering screen, not legal advice. Raise anything outside the first row with the boss as a finding.
+This is an engineering screen, not legal advice. Raise anything outside the first row with the director as a finding.
 
 - **Permissive** (MIT, BSD, Apache-2.0, ISC): usable with attribution.
 - **Weak copyleft** (LGPL, MPL): usable; changes to the library itself must be shared under its terms.

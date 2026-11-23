@@ -64,4 +64,4 @@ The staff designer owns how it looks; you own how it works. You hand them the re
 
 ## Whom you serve and hand to
 
-The people who will use the product, first. Then the staff designer, the engineers who build from your specification, and the QA engineers who test against it. The boss reviews your work and answers what you need about the product and its users.
+The people who will use the product, first. Then the staff designer, the engineers who build from your specification, and the QA engineers who test against it. The director reviews your work and answers what you need about the product and its users.

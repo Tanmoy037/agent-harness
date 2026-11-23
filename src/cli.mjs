@@ -3,7 +3,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { HARNESS_HOME, c, parseArgs, readJson, truncate, formatDuration, HarnessError } from './util.mjs';
 import { UI, banner, info, ok, warn, fail } from './ui.mjs';
-import { chooseModes, modesFromFlags, validateModes, describeModes, DEFAULT_MODES, APPROVALS, ACCESS, PRODUCT_TYPES, BOSS_ENGINES, SURVEY } from './modes.mjs';
+import { chooseModes, modesFromFlags, validateModes, normalizeModes, describeModes, DEFAULT_MODES, APPROVALS, ACCESS, PRODUCT_TYPES, DIRECTOR_ENGINES, SURVEY } from './modes.mjs';
 import { RunState, latestRun, listRuns, loadProjectConfig } from './state.mjs';
 import { createRun, executeRun, detectExisting, PHASES, PHASE_IDS } from './pipeline.mjs';
 import { Run } from './run.mjs';
@@ -34,11 +34,11 @@ ${c.bold('The team')}
   harness doctor                          Check the CLIs, logins and tools the team needs
 
 ${c.bold('Modes')} (asked interactively unless given)
-  --boss <${Object.keys(BOSS_ENGINES).join('|')}>            Who is the boss: Codex, or Claude Fable when Codex is unavailable
+  --director <${Object.keys(DIRECTOR_ENGINES).join("|")}>               Who is the director: Codex, or Claude Fable when Codex is unavailable
   --approvals <${Object.keys(APPROVALS).join('|')}>
   --access <${Object.keys(ACCESS).join('|')}>
   --type <${Object.keys(PRODUCT_TYPES).join(',')}>   (comma separated)
-  --survey <${Object.keys(SURVEY).join('|')}>           Map an existing codebase first
+  --survey <${Object.keys(SURVEY).join('|')}>            Map an existing codebase first
   --engineers <1-8>                       Engineers working in parallel
   --business <true|false>                 Include market research, marketing and sales
   --defaults                              Do not ask; use saved or default modes
@@ -76,20 +76,20 @@ function makeUI(flags) {
 }
 
 async function resolveModes(ui, projectDir, flags) {
-  const saved = loadProjectConfig(projectDir).modes ?? {};
+  const saved = normalizeModes(loadProjectConfig(projectDir).modes ?? {});
   const fromFlags = modesFromFlags(flags);
   const codexAvailable = Boolean(binaryWorks('codex'));
   const existingCode = await detectExisting(projectDir);
   let modes;
   if (flags.defaults || !ui.interactive) {
-    modes = validateModes({ ...DEFAULT_MODES, ...(codexAvailable ? {} : { bossEngine: 'claude' }), ...saved, ...fromFlags });
+    modes = validateModes({ ...DEFAULT_MODES, ...(codexAvailable ? {} : { directorEngine: 'claude' }), ...saved, ...fromFlags });
   } else {
     banner('How should the team work?');
     modes = await chooseModes(ui, { saved, flags: fromFlags, codexAvailable, existingCode });
   }
-  if (modes.bossEngine === 'codex' && !codexAvailable) {
-    warn('The Codex CLI is not available on this machine, so Claude Fable will act as the boss.');
-    modes.bossEngine = 'claude';
+  if (modes.directorEngine === 'codex' && !codexAvailable) {
+    warn('The Codex CLI is not available on this machine, so Claude Fable will act as the director.');
+    modes.directorEngine = 'claude';
   }
   return modes;
 }
@@ -102,7 +102,7 @@ async function cmdRun(flags) {
   const ui = makeUI(flags);
   let request = flags._.join(' ').trim();
   if (flags.requestFile) request = fs.readFileSync(path.resolve(String(flags.requestFile)), 'utf8').trim();
-  if (!request && ui.interactive) request = await ui.text('What should the team build?', { hint: 'Describe it in your own words. The boss will ask follow-up questions.' });
+  if (!request && ui.interactive) request = await ui.text('What should the team build?', { hint: 'Describe it in your own words. The director will ask follow-up questions.' });
   if (!request) throw new HarnessError('Say what to build: harness run "<what you want built>"');
 
   const unfinished = listRuns(projectDir).filter((r) => r.status === 'paused' || r.status === 'running');
@@ -148,11 +148,11 @@ async function cmdSurvey(flags) {
   guardProjectDir(projectDir);
   const ui = makeUI(flags);
   const request = flags._.join(' ').trim() || 'Understand this existing product thoroughly: what it is, how it is built, tested, configured and deployed. No change is requested yet.';
-  const saved = loadProjectConfig(projectDir).modes ?? {};
+  const saved = normalizeModes(loadProjectConfig(projectDir).modes ?? {});
   const codexAvailable = Boolean(binaryWorks('codex'));
   const modes = validateModes({
     ...DEFAULT_MODES,
-    ...(codexAvailable ? {} : { bossEngine: 'claude' }),
+    ...(codexAvailable ? {} : { directorEngine: 'claude' }),
     ...saved,
     ...modesFromFlags(flags),
     survey: flags.survey ? String(flags.survey) : 'always',
@@ -203,7 +203,7 @@ async function cmdAsk(flags) {
   for (const p of buildTeam().problems) warn(p);
   const saved = loadProjectConfig(projectDir);
   const codexAvailable = Boolean(binaryWorks('codex'));
-  const modes = validateModes({ ...DEFAULT_MODES, ...(codexAvailable ? {} : { bossEngine: 'claude' }), ...(saved.modes ?? {}), ...modesFromFlags(flags) });
+  const modes = validateModes({ ...DEFAULT_MODES, ...(codexAvailable ? {} : { directorEngine: 'claude' }), ...normalizeModes(saved.modes ?? {}), ...modesFromFlags(flags) });
   fs.mkdirSync(path.join(projectDir, '.harness'), { recursive: true });
   const state = RunState.create(projectDir, { request: task, modes, docsDir: saved.docsDir ?? 'docs' });
   state.setStatus('running', { only: ['ask'], phase: 'ask' });
@@ -233,7 +233,7 @@ function cmdTeam(flags) {
   const team = loadTeam();
   banner('The team');
   for (const role of Object.values(team.roles)) {
-    const engine = role.engine === 'claude' ? `Claude ${team.engines.claude.model}` : `boss engine (Codex${team.engines.codex.model ? ` ${team.engines.codex.model}` : ''}, or Claude ${team.engines.claudeBoss.model})`;
+    const engine = role.engine === 'claude' ? `Claude ${team.engines.claude.model}` : `director engine (Codex${team.engines.codex.model ? ` ${team.engines.codex.model}` : ''}, or Claude ${team.engines.claudeDirector.model})`;
     console.log(`\n${c.bold(role.title)} ${c.dim(`(${role.id})`)} — ${engine}, high effort`);
     console.log(c.dim(`  ${role.summary ?? ''}`));
     console.log(`  ${role.skills.length} skills: ${c.dim(role.skills.join(', '))}`);
@@ -329,7 +329,7 @@ function cmdStats() {
       `${truncate(r.run, 36).padEnd(38)}${String(r.status).padEnd(9)}${pct(r.phaseReviewsApprovedFirstTime, r.phaseReviews).padEnd(10)}${pct(r.codeReviewsApprovedFirstTime, r.codeReviews).padEnd(9)}${String(r.verifyRounds ?? 0).padEnd(8)}${`${r.blockers ?? 0}/${r.majors ?? 0}`.padEnd(13)}${String(r.ownerRevisions ?? 0).padEnd(11)}${r.lessonsLearned ?? ''}`,
     );
   }
-  console.log(c.dim('\nphase-ok / code-ok: share approved by the boss / staff engineer on first review. Rising first-pass approval and falling verify rounds, blockers and owner revisions mean the team is improving.'));
+  console.log(c.dim('\nphase-ok / code-ok: share approved by the director / staff engineer on first review. Rising first-pass approval and falling verify rounds, blockers and owner revisions mean the team is improving.'));
   return 0;
 }
 
@@ -363,7 +363,7 @@ function cmdDoctor() {
   check('Claude Code CLI', binaryWorks('claude'), 'install Claude Code and run "claude" once to log in');
   const codex = binaryWorks('codex');
   if (codex) ok(`Codex CLI: ${codex}`);
-  else warn('Codex CLI: not found — runs will use Claude Fable as the boss (--boss claude)');
+  else warn('Codex CLI: not found — runs will use Claude Fable as the director (--director claude)');
 
   const tools = path.join(HARNESS_HOME, 'tools', 'node_modules', 'playwright');
   if (fs.existsSync(tools)) ok('Site study tool: Playwright installed');

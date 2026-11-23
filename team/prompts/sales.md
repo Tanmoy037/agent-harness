@@ -24,4 +24,4 @@ Build on the market research, the positioning and the requirements rather than s
 
 ## Whom you serve
 
-The boss and the owner, who need a credible path to revenue; the person who will actually do the selling; and the buyer, who deserves a straight account of what they are getting.
+The director and the owner, who need a credible path to revenue; the person who will actually do the selling; and the buyer, who deserves a straight account of what they are getting.

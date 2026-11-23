@@ -15,7 +15,7 @@ const obj = (properties) => ({
 });
 
 export const ROLE_IDS = [
-  'boss',
+  'director',
   'market-research',
   'marketing',
   'sales',
@@ -57,7 +57,7 @@ export const WORK_REPORT = obj({
   handoff: str,
 });
 
-/** Boss: interview the owner before anything is built. */
+/** Director: interview the owner before anything is built. */
 export const INTAKE = obj({
   understanding: str,
   ready: { type: 'boolean' },
@@ -68,7 +68,7 @@ export const INTAKE = obj({
   assumptions: strList,
 });
 
-/** Boss: review a phase and either approve it or send work back. */
+/** Director: review a phase and either approve it or send work back. */
 export const REVIEW = obj({
   verdict: { type: 'string', enum: ['approve', 'revise'] },
   summary: str,
@@ -77,14 +77,14 @@ export const REVIEW = obj({
   note_to_owner: str,
 });
 
-/** Boss: choose among the designers' directions when the owner is not the one choosing. */
+/** Director: choose among the designers' directions when the owner is not the one choosing. */
 export const DESIGN_CHOICE = obj({
   choice: str,
   reasoning: str,
   changes_requested: str,
 });
 
-/** Boss: decide what must be fixed before the product is accepted. */
+/** Director: decide what must be fixed before the product is accepted. */
 export const TRIAGE = obj({
   verdict: { type: 'string', enum: ['accept', 'fix'] },
   summary: str,
@@ -95,7 +95,7 @@ export const TRIAGE = obj({
   deferred: strList,
 });
 
-/** Boss: answer a teammate's questions, escalating only what the owner must decide. */
+/** Director: answer a teammate's questions, escalating only what the owner must decide. */
 export const ANSWERS = obj({
   answers: { type: 'array', items: obj({ question: str, answer: str }) },
   ask_owner: strList,
@@ -109,14 +109,14 @@ export const CODE_REVIEW = obj({
   lessons: { type: 'array', items: lesson },
 });
 
-/** Boss: go / no-go for release. */
+/** Director: go / no-go for release. */
 export const RELEASE_DECISION = obj({
   verdict: { type: 'string', enum: ['go', 'no-go'] },
   summary: str,
   conditions: strList,
 });
 
-/** Boss: what the team should learn from this run. */
+/** Director: what the team should learn from this run. */
 export const RETROSPECTIVE = obj({
   summary: str,
   role_lessons: { type: 'array', items: obj({ role: roleEnum, lesson: str, evidence: str }) },

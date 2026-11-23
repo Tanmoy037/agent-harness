@@ -13,7 +13,7 @@ Use the exact role ids below when you name a role. An instruction addressed to t
 
 | Role id | Owns | Send here when |
 |---|---|---|
-| `boss` | The brief, the PRD, acceptance, go / no-go | Requirements are wrong, contradictory or missing |
+| `director` | The brief, the PRD, acceptance, go / no-go | Requirements are wrong, contradictory or missing |
 | `market-research` | Market, competitor and user evidence | A claim about the market lacks a source or is out of date |
 | `marketing` | Positioning, voice, launch plan and copy | Messaging is generic, off-voice, or promises what was not built |
 | `sales` | Customer profile, pricing and packaging, sales material | Pricing or objection handling is unsupported |
