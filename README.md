@@ -11,7 +11,7 @@ Engineers who map a codebase before touching it. QA, security and platform who s
 ![Roles](https://img.shields.io/badge/roles-13-4f46e5)
 ![Skills](https://img.shields.io/badge/skills-191-0ea5e9)
 ![Engines](https://img.shields.io/badge/engines-Codex%20%2B%20Claude-111827)
-![Tests](https://img.shields.io/badge/tests-10%20passing-16a34a)
+![Tests](https://img.shields.io/badge/tests-13%20passing-16a34a)
 
 </div>
 
@@ -189,12 +189,18 @@ Nothing about how the team works is fixed. You choose at the start of each run; 
 
 <br>
 
-In every mode, agents cannot read your SSH, cloud or CLI credentials and cannot use `sudo`. Pushing, publishing and deploying stay blocked until go-live is approved, by you or, in `autonomous`, by the boss.
+In every mode, agents cannot use `sudo`, and Claude roles cannot read your SSH, cloud or CLI credential files. Pushing, publishing and deploying stay blocked until go-live is approved, by you or, in `autonomous`, by the boss. That lock has three layers, so it does not depend on an agent spelling a command the expected way:
+
+- **No credentials in the environment.** Cloud, registry and git-host variables (`AWS_*`, `GH_TOKEN`, `VERCEL_TOKEN`, `KUBECONFIG`, `SSH_AUTH_SOCK` and the like) are removed from every agent's environment. Only the approved deploy step gets your full environment.
+- **No git push.** Every push URL is rewritten to a scheme git cannot use, so `git push`, `sh -c "git push"` and a script that pushes all fail the same way.
+- **Deny rules** for deploy and publish commands (`vercel`, `terraform apply`, `kubectl apply`, `npm publish` and more), applied in every Claude permission mode.
+
+Codex roles only research and write documents, so they run in Codex's workspace sandbox in every mode, never with full access. The sandbox limits what they can write, not what they can read.
 
 | Mode | Behaviour |
 |---|---|
 | `guarded` | Claude's automatic permission mode: routine work runs, risky actions are refused |
-| `bypass` | No permission checks beyond the rules above. Fastest; an agent mistake can affect anything your account can touch |
+| `bypass` | No permission checks beyond the rules above. Fastest; an agent mistake can still change anything on this machine your account can write |
 | `strict` | File edits plus a fixed list of commands. Safest; agents are blocked more often |
 
 </details>
@@ -343,7 +349,31 @@ Models are set in `team/roles.json` under `engines`. The Codex model is left uns
 npm test
 ```
 
-runs unit tests and a full pipeline with stand-in agents (`HARNESS_FAKE_AGENTS=1`). No model is called, but git, worktrees, merge conflicts, review loops, approval pauses, resume and memory are exercised for real.
+runs unit tests and a full pipeline with stand-in agents (`HARNESS_FAKE_AGENTS=1`). No model is called, but git, worktrees, merge conflicts, review loops, approval pauses, resume and memory are exercised for real. The tests use their own git config, so commit signing and global hooks on your machine do not affect them (and never ask for your key).
+
+<details>
+<summary><b>Commit signing</b></summary>
+
+<br>
+
+The team's commits follow your git config: if you sign commits, they are signed. Signing that needs a person (a hardware key, a 1Password, Secretive or fingerprint prompt) cannot complete while nobody is at the keyboard, so `HARNESS_GIT_SIGN` decides what happens then:
+
+| Value | Behaviour |
+|---|---|
+| `auto` (default) | Sign when configured; if signing fails, commit unsigned on the run branch and say so once |
+| `require` | Sign, and stop the run if signing fails |
+| `off` | Never sign the team's commits |
+
+</details>
+
+<details>
+<summary><b>Agent processes</b></summary>
+
+<br>
+
+Each agent runs in its own process group. When it finishes, times out or the run is interrupted, the dev servers, browsers and test runners it started stop with it, so ports are freed and nothing keeps running after the harness exits.
+
+</details>
 
 ---
 

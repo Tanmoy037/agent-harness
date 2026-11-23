@@ -3,7 +3,7 @@ import path from 'node:path';
 import { HARNESS_HOME, c, truncate, formatDuration, writeJson, Semaphore, Mutex, HarnessError } from './util.mjs';
 import { banner, info, ok, warn, fail } from './ui.mjs';
 import { getRole, resolveEngine, claudeRoleDir, codexRoleDir } from './team.mjs';
-import { claudePermissions, codexPermissions } from './permissions.mjs';
+import { claudePermissions, codexPermissions, agentEnv } from './permissions.mjs';
 import { runClaude } from './runners/claude.mjs';
 import { runCodex, writeSchemaFile } from './runners/codex.mjs';
 import { WORK_REPORT, REVIEW, ANSWERS } from './schemas.mjs';
@@ -131,6 +131,8 @@ export class Run {
     const onActivity = this.options.quiet ? undefined : (line) => console.log(`${tag} ${c.dim(line)}`);
     const timeoutMs = (spec.timeoutMin ?? this.options.stepTimeoutMin) * 60_000;
     const schema = spec.schema ?? WORK_REPORT;
+    // Credentials and git push only reach the approved deploy step.
+    const baseEnv = agentEnv({ goliveUnlocked: Boolean(spec.goliveUnlocked) });
     const env = {
       HARNESS_HOME,
       HARNESS_PROJECT: this.projectDir,
@@ -139,7 +141,7 @@ export class Run {
       HARNESS_MEMORY_DIR: memory.MEMORY_DIR,
       PORT: String(port),
       // playwright-cli and the other browser tools the harness ships are on the agents' PATH.
-      PATH: `${path.join(HARNESS_HOME, 'tools', 'node_modules', '.bin')}${path.delimiter}${process.env.PATH ?? ''}`,
+      PATH: `${path.join(HARNESS_HOME, 'tools', 'node_modules', '.bin')}${path.delimiter}${baseEnv.PATH ?? ''}`,
     };
 
     // Test mode: exercise the orchestration without calling any model.
@@ -170,6 +172,7 @@ export class Run {
           resume,
           addDirs: [...new Set([this.projectDir, path.join(HARNESS_HOME, 'tools'), memory.MEMORY_DIR])].filter((d) => d !== cwd && fs.existsSync(d)),
           env,
+          baseEnv,
           logFile,
           onActivity,
           timeoutMs,
@@ -191,6 +194,7 @@ export class Run {
         schemaFile,
         resume,
         env,
+        baseEnv,
         logFile,
         onActivity,
         timeoutMs,
@@ -199,7 +203,7 @@ export class Run {
   }
 
   /** Run one step to a structured result, with one retry and the question-answer loop. */
-  async exec(spec) {
+  async exec(spec) { // synup-ignore: method name, not eval/exec
     const done = this.state.step(spec.id);
     if (done?.status === 'done') return done.report;
 
@@ -288,12 +292,12 @@ export class Run {
 
   /** An agent does work and reports. */
   work(spec) {
-    return this.exec({ kind: 'work', ...spec });
+    return this.exec({ kind: 'work', ...spec }); // synup-ignore: method name, not eval/exec
   }
 
   /** The boss (or another role) returns a decision without changing anything. */
   decide(spec) {
-    return this.exec({ role: 'boss', kind: 'decision', ...spec });
+    return this.exec({ role: 'boss', kind: 'decision', ...spec }); // synup-ignore: method name, not eval/exec
   }
 
   /** Run steps in parallel. All are allowed to finish (and be saved) before the first failure is raised. */
