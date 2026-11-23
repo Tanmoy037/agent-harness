@@ -47,9 +47,9 @@ export async function runTasks(run, tasks, { prefix, context = [] }) {
 
 async function runTask(run, task, { prefix, context }) {
   const { state, projectDir, options } = run;
-  // Only Claude roles build; a task assigned to a boss-side role goes to a senior engineer.
+  // Only Claude roles build; a task assigned to a director-side role goes to a senior engineer.
   let owner = task.owner && run.team.roles[task.owner] ? task.owner : 'senior-engineer';
-  if (resolveEngine(run.team, getRole(run.team, owner), run.modes).kind !== 'claude' || owner === 'boss') owner = 'senior-engineer';
+  if (resolveEngine(run.team, getRole(run.team, owner), run.modes).kind !== 'claude' || owner === 'director') owner = 'senior-engineer';
 
   const branch = `harness/${state.id}/${task.id}`;
   const worktree = path.join(harnessDir(projectDir), 'worktrees', state.id, task.id);

@@ -18,7 +18,7 @@ Collect, or derive, these inputs:
 - growth the PRD expects over one and three years;
 - the PRD's quality numbers: response times, page load targets, availability, job completion times.
 
-When the PRD gives no number, do not leave a blank. Choose a defensible assumption, label it as an assumption in the architecture, and raise it in your report as a question for the boss. An explicit wrong assumption gets corrected; a silent one does not.
+When the PRD gives no number, do not leave a blank. Choose a defensible assumption, label it as an assumption in the architecture, and raise it in your report as a question for the director. An explicit wrong assumption gets corrected; a silent one does not.
 
 ## 2. Do the arithmetic
 

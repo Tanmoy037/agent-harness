@@ -6,7 +6,7 @@ import { execFileSync } from 'node:child_process';
  * Stand-in agents for testing the harness itself (HARNESS_FAKE_AGENTS=1).
  *
  * No model is called. Each step writes the files it was asked to deliver and returns a
- * well-formed result, with a fixed script of events that exercises the loops: one boss
+ * well-formed result, with a fixed script of events that exercises the loops: one director
  * revision, one code-review rejection, one merge conflict, one verification failure.
  * It proves the orchestration (state, git, worktrees, gates, resume, memory); it says
  * nothing about the quality of real agents' work.
@@ -59,7 +59,7 @@ function decision(spec) {
         ? { understanding: 'A small test product.', ready: false, questions: [{ id: 'q1', question: 'Who is it for?', why: 'Scope', options: [] }], assumptions: [] }
         : { understanding: 'Understood.', ready: true, questions: [], assumptions: ['Assumed a general audience.'] };
     case 'review':
-      // The boss sends the architecture back once, to exercise the revision loop.
+      // The director sends the architecture back once, to exercise the revision loop.
       if (/^architecture\.review\.r1$/.test(id)) {
         return { verdict: 'revise', summary: 'Plan misses rollback.', revisions: [{ role: 'platform-engineer', instructions: 'Add a rollback procedure to the deployment plan.' }], risks: [], note_to_owner: '' };
       }
@@ -84,7 +84,7 @@ function decision(spec) {
       return {
         summary: 'A clean test run.',
         role_lessons: [{ role: 'senior-engineer', lesson: 'When a list can be empty, build and test the empty state in the same task as the list.', evidence: 'verify.r1' }],
-        team_lessons: ['Deployment plans must include rollback before the boss reviews them.'],
+        team_lessons: ['Deployment plans must include rollback before the director reviews them.'],
         owner_preferences: [],
         project_facts: ['The product is a test fixture.'],
         retire_lesson_ids: [],

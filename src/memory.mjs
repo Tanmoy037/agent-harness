@@ -17,7 +17,7 @@ import { HARNESS_HOME, slug } from './util.mjs';
  *   <product>/.harness/memory/project.jsonl   facts and decisions about one product
  *
  * Only two things write lessons: the owner's own words at an approval point (stored
- * verbatim) and the boss's end-of-run retrospective (curated from what reviews, QA and
+ * verbatim) and the director's end-of-run retrospective (curated from what reviews, QA and
  * security actually found). Agents propose lessons; they do not write memory directly.
  */
 
@@ -169,7 +169,7 @@ export function recall({ role, projectDir }) {
   ].join('\n');
 }
 
-/** Everything the boss needs to curate memory in a retrospective, including ids so lessons can be retired. */
+/** Everything the director needs to curate memory in a retrospective, including ids so lessons can be retired. */
 export function dumpForCuration({ roles, projectDir }) {
   const fmt = (entries) => rank(entries).map((e) => `- [${e.id}] (hits ${e.hits ?? 1}) ${e.lesson}`).join('\n') || '- none yet';
   const out = [`### owner\n${fmt(list('owner'))}`, `### team\n${fmt(list('team'))}`];

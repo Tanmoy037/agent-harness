@@ -5,7 +5,7 @@ import { INTAKE } from '../schemas.mjs';
 import { hasUI } from '../modes.mjs';
 
 /**
- * Intake: the boss interviews the owner before anything is decided.
+ * Intake: the director interviews the owner before anything is decided.
  * Discovery: market research, the product spec, and a challenge of that spec by the
  * people who will have to design and build it.
  */
@@ -43,10 +43,10 @@ ${renderTranscript(transcript)}`,
     if (decision.ready || !decision.questions?.length) break;
     if (state.get(`intake.answered.r${round}`)) continue;
 
-    banner(round === 1 ? 'The boss has questions before the team starts' : 'A few follow-up questions');
+    banner(round === 1 ? 'The director has questions before the team starts' : 'A few follow-up questions');
     console.log(decision.understanding.trim());
     if (!ui.interactive) {
-      info('No terminal is attached, so the boss will decide these itself and record its assumptions.');
+      info('No terminal is attached, so the director will decide these itself and record its assumptions.');
       for (const q of decision.questions) transcript.push({ round, question: q.question, answer: '' });
       state.set('intake.transcript', transcript);
       state.set(`intake.answered.r${round}`, true);
@@ -62,7 +62,7 @@ ${renderTranscript(transcript)}`,
     state.set(`intake.answered.r${round}`, true);
   }
 
-  // The owner's exact words are kept verbatim; the brief is the boss's reading of them.
+  // The owner's exact words are kept verbatim; the brief is the director's reading of them.
   writeText(
     run.abs(P('owner-interview.md')),
     `# Owner interview\n\nThe owner's request and answers, verbatim. This outranks every other document when they disagree.\n\n## Request\n\n${state.data.request.trim()}\n\n## Questions and answers\n\n${renderTranscript(transcript)}\n`,
@@ -70,7 +70,7 @@ ${renderTranscript(transcript)}`,
 
   await run.work({
     id: 'intake.brief',
-    role: 'boss',
+    role: 'director',
     title: 'Write the product brief',
     resumeFrom: `intake.questions.r1`,
     task: `Write the brief that every person on the team will read first. It must let a designer, an engineer and a tester each understand what is being built, for whom, and why, without having been in the interview.
@@ -110,7 +110,7 @@ End with what this means for the product: the five to ten findings that should c
 
   await run.work({
     id: 'discovery.prd',
-    role: 'boss',
+    role: 'director',
     title: 'Write the product requirements',
     task: `Write the product requirements document the whole team will build from and that you will later accept or reject the work against. Decide; do not list options.
 
@@ -149,7 +149,7 @@ Be ambitious about quality and disciplined about scope: a smaller product that i
 
   await run.work({
     id: 'discovery.prd-final',
-    role: 'boss',
+    role: 'director',
     title: 'Finalise the requirements',
     resumeFrom: 'discovery.prd',
     task: `Engineering${ui ? ' and UX' : ''} have challenged your draft. Decide each point: accept it and change the document, or reject it and record why in a short "Decisions" section at the end. Then make the document final: consistent, numbered, and testable throughout.`,
@@ -174,7 +174,7 @@ Deliver: the positioning statement (for whom, the problem, the category, the dif
   await run.gate('spec', {
     phase: 'discovery',
     title: 'Product requirements',
-    summary: 'The boss has written the product requirements, and engineering and UX have challenged them.',
+    summary: 'The director has written the product requirements, and engineering and UX have challenged them.',
     artifacts: [P('PRD.md'), P('brief.md'), ...research],
   });
 }

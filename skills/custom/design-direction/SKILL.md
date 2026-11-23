@@ -67,5 +67,5 @@ Then append to `$HARNESS_MEMORY_DIR/design/directions.md` (create it if missing)
 ## <date> · <product> · <industry>
 Thesis: <one sentence>
 Type: <families>   Colour: <ground / ink / accent values>   Layout: <one line>
-Primary reference: <name>   Chosen by: <owner or boss>   Owner's reaction: <their words, if any>
+Primary reference: <name>   Chosen by: <owner or director>   Owner's reaction: <their words, if any>
 ```

@@ -3,10 +3,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const live = new Set();
+const GROUPS = process.platform !== 'win32';
 
-/** Stop every agent process that is still running (used when the harness itself is interrupted). */
-export function killAll(signal = 'SIGTERM') {
-  for (const child of live) {
+/**
+ * Signal an agent and everything it started. Each agent runs in its own process group, so
+ * the dev servers, browsers and test runners it launched stop with it instead of
+ * outliving the run and holding its ports.
+ */
+function killTree(child, signal) {
+  try {
+    if (GROUPS && child.pid) process.kill(-child.pid, signal);
+    else child.kill(signal);
+  } catch {
     try {
       child.kill(signal);
     } catch {
@@ -14,6 +22,16 @@ export function killAll(signal = 'SIGTERM') {
     }
   }
 }
+
+/** Stop every agent process that is still running (used when the harness itself is interrupted). */
+export function killAll(signal = 'SIGTERM') {
+  for (const child of live) killTree(child, signal);
+}
+
+// Agents live in their own process groups, so they no longer receive the terminal's
+// Ctrl-C or die with the harness by themselves. Whatever is still running when the
+// harness exits, however it exits, is stopped.
+process.on('exit', () => killAll('SIGKILL'));
 
 /**
  * Run a CLI that emits one JSON object per line on stdout.
@@ -26,7 +44,7 @@ export function runJsonLines({ cmd, args, cwd, env, stdin, logFile, onEvent, tim
   return new Promise((resolve, reject) => {
     fs.mkdirSync(path.dirname(logFile), { recursive: true });
     const log = fs.createWriteStream(logFile, { flags: 'a' });
-    const child = spawn(cmd, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
+    const child = spawn(cmd, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'], detached: GROUPS });
     live.add(child);
 
     let buffer = '';
@@ -37,8 +55,8 @@ export function runJsonLines({ cmd, args, cwd, env, stdin, logFile, onEvent, tim
     const timer = timeoutMs
       ? setTimeout(() => {
           timedOut = true;
-          child.kill('SIGTERM');
-          killTimer = setTimeout(() => child.kill('SIGKILL'), 10_000);
+          killTree(child, 'SIGTERM');
+          killTimer = setTimeout(() => killTree(child, 'SIGKILL'), 10_000);
         }, timeoutMs)
       : null;
 
@@ -80,10 +98,16 @@ export function runJsonLines({ cmd, args, cwd, env, stdin, logFile, onEvent, tim
       reject(new Error(`Could not start ${cmd}: ${err.message}`));
     });
 
+    // A background process the agent left behind can hold stdout open, and 'close' waits
+    // for every holder. When the agent itself exits, stop its group so the run moves on.
+    child.on('exit', () => killTree(child, 'SIGTERM'));
+
     child.on('close', (code, signal) => {
       clearTimeout(timer);
       clearTimeout(killTimer);
       live.delete(child);
+      // The agent is done; anything it left running in its group goes with it.
+      killTree(child, 'SIGTERM');
       if (buffer) handleLine(buffer);
       if (stderr.trim()) log.write(`[stderr] ${stderr.trim()}\n`);
       log.end();

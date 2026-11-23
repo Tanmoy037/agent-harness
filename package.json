@@ -1,7 +1,7 @@
 {
   "name": "agent-harness",
   "version": "0.1.0",
-  "description": "A software company of AI agents: a Codex boss directing Claude Opus designers, engineers, QA, security and platform engineers.",
+  "description": "A software company of AI agents: a Codex director leading Claude Opus designers, engineers, QA, security and platform engineers.",
   "type": "module",
   "private": true,
   "bin": {
@@ -13,6 +13,6 @@
   "scripts": {
     "team:build": "node bin/harness.mjs team build",
     "doctor": "node bin/harness.mjs doctor",
-    "test": "node --test test/"
+    "test": "node --test test/*.test.mjs"
   }
 }

@@ -1,11 +1,39 @@
 import { execFile } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { harnessGitEnv, signingPolicy } from './permissions.mjs';
+
+const GIT_ENV = harnessGitEnv();
+const SIGNING_FAILURE = /gpg failed|failed to sign|couldn't sign|signing .* failed|agent refused|error: (gpg|ssh-keygen)|no secret key|incorrect passphrase|ssh-keygen.*-Y sign/i;
+let warnedUnsigned = false;
+
+/**
+ * Run a committing git command (commit, merge) honouring the owner's signing config.
+ * Signing can need a human (a hardware key, a 1Password or Secretive prompt). When it
+ * fails and HARNESS_GIT_SIGN is not "require", the same command is retried unsigned so
+ * the run does not stop, and the owner is told once.
+ */
+async function signedOrUnsigned(cwd, args) {
+  const r = await git(cwd, args);
+  if (r.ok || signingPolicy() === 'require' || !SIGNING_FAILURE.test(`${r.stderr}\n${r.stdout}`)) return r;
+  // A merge that fails at the signing step leaves the merge staged with MERGE_HEAD set:
+  // conclude it unsigned rather than starting it again.
+  const merging = args.includes('merge') && (await git(cwd, ['rev-parse', '-q', '--verify', 'MERGE_HEAD'])).ok;
+  const identity = args.slice(0, args.findIndex((a) => a === 'commit' || a === 'merge'));
+  const retry = merging
+    ? await git(cwd, [...identity, '-c', 'commit.gpgsign=false', 'commit', '-q', '--no-edit', '--no-verify'])
+    : await git(cwd, ['-c', 'commit.gpgsign=false', ...args]);
+  if (retry.ok && !warnedUnsigned) {
+    warnedUnsigned = true;
+    console.warn('! Your git config signs commits, but signing needs someone at the keyboard. The team\'s commits on the run branch are unsigned; sign them when you merge, or set HARNESS_GIT_SIGN=require to stop instead.');
+  }
+  return retry.ok ? retry : r;
+}
 
 /** Run git and resolve with { ok, stdout, stderr }. Never throws for a non-zero exit. */
 export function git(cwd, args, { maxBuffer = 64 * 1024 * 1024 } = {}) {
   return new Promise((resolve) => {
-    execFile('git', args, { cwd, maxBuffer }, (err, stdout, stderr) => {
+    execFile('git', args, { cwd, maxBuffer, env: GIT_ENV }, (err, stdout, stderr) => {
       resolve({ ok: !err, stdout: String(stdout ?? '').trimEnd(), stderr: String(stderr ?? '').trim() });
     });
   });
@@ -79,7 +107,8 @@ export async function commitAll(dir, message) {
   const staged = await git(dir, ['diff', '--cached', '--quiet']);
   if (staged.ok) return null; // exit 0 means no staged changes
   const id = await identityArgs(dir);
-  await must(dir, [...id, 'commit', '-q', '--no-verify', '-m', message]);
+  const r = await signedOrUnsigned(dir, [...id, 'commit', '-q', '--no-verify', '-m', message]);
+  if (!r.ok) throw new Error(`git commit failed in ${dir}: ${r.stderr || r.stdout}`);
   return head(dir);
 }
 
@@ -113,7 +142,7 @@ export async function removeWorktree(repoDir, worktreeDir, mergedBranch) {
  */
 export async function mergeBranch(dir, branch, message) {
   const id = await identityArgs(dir);
-  const r = await git(dir, [...id, 'merge', '--no-ff', '--no-verify', '-m', message, branch]);
+  const r = await signedOrUnsigned(dir, [...id, 'merge', '--no-ff', '--no-verify', '-m', message, branch]);
   if (r.ok) return { ok: true };
   const conflicts = (await git(dir, ['diff', '--name-only', '--diff-filter=U'])).stdout.split('\n').filter(Boolean);
   if (!conflicts.length) throw new Error(`git merge ${branch} failed: ${r.stderr || r.stdout}`);

@@ -23,4 +23,4 @@ Read the brief, the owner's interview, the requirements and the market research 
 
 ## Whom you serve
 
-The boss, who owns the product decisions; the designers, who need the voice and real copy; sales, who need consistent messages; and the customer, who should understand in a few seconds what this is and why it is for them.
+The director, who owns the product decisions; the designers, who need the voice and real copy; sales, who need consistent messages; and the customer, who should understand in a few seconds what this is and why it is for them.

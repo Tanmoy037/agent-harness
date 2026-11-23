@@ -8,9 +8,9 @@ import { PauseRun } from '../run.mjs';
 import { runTasks } from './build.mjs';
 
 /**
- * Verify: QA, security and design each examine the built product independently, the boss
+ * Verify: QA, security and design each examine the built product independently, the director
  * decides what must be fixed, engineers fix it, and the whole product is examined again.
- * The loop ends when the boss accepts the product against the PRD.
+ * The loop ends when the director accepts the product against the PRD.
  */
 
 const collectFindings = (reports) =>
@@ -106,7 +106,7 @@ ${truncate(JSON.stringify(findings, null, 1), 40_000).replace(/…$/, '\n… (tr
       accepted = true;
       state.set('verify.accepted', true);
       state.set('verify.deferred', triage.deferred ?? []);
-      info(`The boss accepted the product: ${truncate(triage.summary, 200)}`);
+      info(`The director accepted the product: ${truncate(triage.summary, 200)}`);
       break;
     }
 
@@ -129,7 +129,7 @@ ${truncate(JSON.stringify(findings, null, 1), 40_000).replace(/…$/, '\n… (tr
     if (problems.length) warn(`Some fix tasks were malformed and were skipped: ${problems.join('; ')}`);
     const usable = problems.length ? tasks.filter((t) => t.title && t.description) : tasks;
     writeJson(path.join(state.dir, `fix-tasks-r${loop}.json`), usable);
-    run.log(c.yellow(`↺ The boss sent the product back with ${usable.length} fix task(s): ${truncate(triage.summary, 160)}`));
+    run.log(c.yellow(`↺ The director sent the product back with ${usable.length} fix task(s): ${truncate(triage.summary, 160)}`));
 
     await runTasks(run, usable, {
       prefix: `fix${loop}`,
@@ -139,7 +139,7 @@ ${truncate(JSON.stringify(findings, null, 1), 40_000).replace(/…$/, '\n… (tr
   }
 
   if (!accepted && !state.get('verify.override')) {
-    const msg = `The boss has not accepted the product after ${options.verifyLoops} verification rounds.`;
+    const msg = `The director has not accepted the product after ${options.verifyLoops} verification rounds.`;
     if (ui.interactive && (await ui.confirm(`${msg} Continue to release preparation anyway?`, { fallback: false }))) {
       state.set('verify.override', true);
       warn('Continuing at your instruction with open findings; see the QA and security reports.');

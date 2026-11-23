@@ -10,7 +10,7 @@ export const GATES = ['spec', 'design', 'architecture', 'golive'];
 export const APPROVALS = {
   'design-golive': {
     label: 'Design + go-live',
-    description: 'You approve the design direction before engineers build, and anything that deploys or publishes. The boss approves the rest.',
+    description: 'You approve the design direction before engineers build, and anything that deploys or publishes. The director approves the rest.',
     gates: ['design', 'golive'],
   },
   'every-phase': {
@@ -20,12 +20,12 @@ export const APPROVALS = {
   },
   'golive-only': {
     label: 'Only before go-live',
-    description: 'The boss approves spec, design and architecture. You are asked only before something is deployed or published.',
+    description: 'The director approves spec, design and architecture. You are asked only before something is deployed or published.',
     gates: ['golive'],
   },
   autonomous: {
     label: 'Fully autonomous',
-    description: 'The boss makes every call from interview to deployment, including deploying.',
+    description: 'The director makes every call from interview to deployment, including deploying.',
     gates: [],
   },
 };
@@ -52,9 +52,9 @@ export const PRODUCT_TYPES = {
   backend: { label: 'API / backend / tool', description: 'Service, integration, CLI or pipeline with little or no UI.', ui: false },
 };
 
-/** Who plays the boss and the business specialists. Both run at high effort. */
-export const BOSS_ENGINES = {
-  codex: { label: 'Codex', description: 'The boss, market research, marketing and sales run on the Codex CLI.' },
+/** Who plays the director and the business specialists. Both run at high effort. */
+export const DIRECTOR_ENGINES = {
+  codex: { label: 'Codex', description: 'The director, market research, marketing and sales run on the Codex CLI.' },
   claude: { label: 'Claude Fable', description: 'Use when Codex is not available: the same roles run on Claude Fable.' },
 };
 
@@ -71,13 +71,14 @@ export const DEFAULT_MODES = {
   productTypes: ['web-app'],
   engineers: 3,
   business: true,
-  bossEngine: 'codex',
+  directorEngine: 'codex',
   survey: 'auto',
 };
 
 const asOptions = (table) => Object.entries(table).map(([value, v]) => ({ value, label: v.label, description: v.description }));
 
 export function validateModes(modes) {
+  modes = normalizeModes(modes);
   if (!APPROVALS[modes.approvals]) {
     throw new HarnessError(`Unknown approvals mode "${modes.approvals}". Choose one of: ${Object.keys(APPROVALS).join(', ')}`);
   }
@@ -93,13 +94,20 @@ export function validateModes(modes) {
   }
   const n = Number(modes.engineers);
   if (!Number.isInteger(n) || n < 1 || n > 8) throw new HarnessError('Parallel engineers must be a whole number from 1 to 8.');
-  if (!BOSS_ENGINES[modes.bossEngine]) {
-    throw new HarnessError(`Unknown boss "${modes.bossEngine}". Choose one of: ${Object.keys(BOSS_ENGINES).join(', ')}`);
+  if (!DIRECTOR_ENGINES[modes.directorEngine]) {
+    throw new HarnessError(`Unknown director "${modes.directorEngine}". Choose one of: ${Object.keys(DIRECTOR_ENGINES).join(', ')}`);
   }
   if (!SURVEY[modes.survey]) {
     throw new HarnessError(`Unknown survey mode "${modes.survey}". Choose one of: ${Object.keys(SURVEY).join(', ')}`);
   }
   return { ...modes, engineers: n, business: Boolean(modes.business) };
+}
+
+/** Accept modes saved before the role was renamed from "boss" to "director". */
+export function normalizeModes(modes = {}) {
+  if (!modes || modes.directorEngine !== undefined || modes.bossEngine === undefined) return modes;
+  const { bossEngine, ...rest } = modes;
+  return { ...rest, directorEngine: bossEngine };
 }
 
 /** Flags given on the command line, in the shape of a partial modes object. */
@@ -110,7 +118,8 @@ export function modesFromFlags(flags) {
   if (flags.type) out.productTypes = String(flags.type).split(',').map((s) => s.trim()).filter(Boolean);
   if (flags.engineers) out.engineers = Number(flags.engineers);
   if (flags.business !== undefined) out.business = !['false', 'no', '0'].includes(String(flags.business));
-  if (flags.boss) out.bossEngine = String(flags.boss);
+  const director = flags.director ?? flags.boss; // --boss is the old name, still accepted
+  if (director) out.directorEngine = String(director);
   if (flags.survey) out.survey = String(flags.survey);
   return out;
 }
@@ -120,13 +129,14 @@ export function modesFromFlags(flags) {
  * choices) becomes the default for each question.
  */
 export async function chooseModes(ui, { saved = {}, flags = {}, codexAvailable = true, existingCode = false } = {}) {
+  saved = normalizeModes(saved);
   const base = { ...DEFAULT_MODES, ...saved };
-  if (!codexAvailable && !saved.bossEngine) base.bossEngine = 'claude';
+  if (!codexAvailable && !saved.directorEngine) base.directorEngine = 'claude';
   const modes = { ...base, ...flags };
 
-  if (flags.bossEngine === undefined) {
-    modes.bossEngine = await ui.select('Who is the boss (product and project manager)?', asOptions(BOSS_ENGINES), {
-      fallback: base.bossEngine,
+  if (flags.directorEngine === undefined) {
+    modes.directorEngine = await ui.select('Who is the director (product and project manager)?', asOptions(DIRECTOR_ENGINES), {
+      fallback: base.directorEngine,
     });
   }
   if (flags.survey === undefined && existingCode) {
@@ -168,7 +178,7 @@ export const needsHuman = (modes, gate) => APPROVALS[modes.approvals].gates.incl
 
 export function describeModes(modes) {
   return [
-    `Boss: ${BOSS_ENGINES[modes.bossEngine].label}`,
+    `Director: ${DIRECTOR_ENGINES[modes.directorEngine].label}`,
     `Codebase survey: ${SURVEY[modes.survey].label}`,
     `Approvals: ${APPROVALS[modes.approvals].label}`,
     `Agent access: ${ACCESS[modes.access].label}`,

@@ -28,14 +28,14 @@ Trace each significant finding back through the phases and stop at the first poi
 |---|---|---|
 | A defect in verification | Did the task's acceptance criteria cover it? | If not: `staff-engineer` (task breakdown). If yes and it was built wrong: `senior-engineer` |
 | The same defect, passed by code review | Should the review have caught it? | Also `staff-engineer` (review), as a separate lesson |
-| A missing state or flow | Was it in the screen specification? | If not: `ux-designer`. If it was not in the PRD either: `boss` |
+| A missing state or flow | Was it in the screen specification? | If not: `ux-designer`. If it was not in the PRD either: `director` |
 | A screen that looks generic | Did the design system specify it precisely enough? | `staff-designer` if not; `senior-engineer` if the specification was clear and ignored |
 | A vulnerability in built code | Was it a numbered security requirement in the threat model? | If not: `security-engineer`. If yes and not implemented: the task breakdown or the engineer |
 | A contract mismatch at integration | Was the interface fixed precisely in the plan? | `staff-engineer` or `principal-engineer` |
 | A deployment surprise | Was it in the deployment plan? | `platform-engineer` |
-| Rework after owner feedback | Could a better interview question have surfaced it? | `boss` |
+| Rework after owner feedback | Could a better interview question have surfaced it? | `director` |
 
-Include yourself. The boss's requirements, reviews and decisions cause problems like anyone else's, and a retrospective that never finds a lesson for the boss is not being honest.
+Include yourself. The director's requirements, reviews and decisions cause problems like anyone else's, and a retrospective that never finds a lesson for the director is not being honest.
 
 ## 3. The test of a good lesson
 

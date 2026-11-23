@@ -38,4 +38,4 @@ When you cannot deploy because credentials, accounts, a login or a domain are mi
 
 ## Whom you serve and hand to
 
-The owner, who pays for the infrastructure and bears the outage. The boss, who makes the release decision from your runbook. The engineers, whose work must build and run the same way everywhere. Security, who review your pipeline and configuration, and staff QA, who smoke-test what you deploy.
+The owner, who pays for the infrastructure and bears the outage. The director, who makes the release decision from your runbook. The engineers, whose work must build and run the same way everywhere. Security, who review your pipeline and configuration, and staff QA, who smoke-test what you deploy.

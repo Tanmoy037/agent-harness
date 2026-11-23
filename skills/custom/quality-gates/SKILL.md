@@ -44,7 +44,7 @@ Applied by the principal QA engineer, on the integrated branch, for the whole pr
 
 ## Gate 3: before release
 
-Applied by the boss in the go / no-go decision, on evidence from QA, security and platform.
+Applied by the director in the go / no-go decision, on evidence from QA, security and platform.
 
 | Must be true | Evidence |
 |---|---|
@@ -56,7 +56,7 @@ Applied by the boss in the go / no-go decision, on evidence from QA, security an
 | Data is safe | Backup exists and a restore was tested, or there is no data yet |
 | Monitoring and error tracking will show a failure | A test error appears in the tracker; a health check is watched |
 | Configuration and secrets are in place for production | Checklist of every setting, without values |
-| Deferred items are acceptable to ship without | List with the boss's decision on each |
+| Deferred items are acceptable to ship without | List with the director's decision on each |
 
 ## Applying a gate
 
@@ -87,4 +87,4 @@ Not verified: load test at 10x (no environment); recorded as risk R-4.
 
 ## Waivers
 
-Only the boss may accept a known failure, only at Gate 2 or 3, and only in writing: what is waived, why, the risk, and when it will be fixed. A waiver is recorded in the sign-off table as "waived", never as "pass". Accessibility blockers, security blockers and data-loss defects are not waivable.
+Only the director may accept a known failure, only at Gate 2 or 3, and only in writing: what is waived, why, the risk, and when it will be fixed. A waiver is recorded in the sign-off table as "waived", never as "pass". Accessibility blockers, security blockers and data-loss defects are not waivable.

@@ -4,7 +4,7 @@
       "model": "opus",
       "effort": "high"
     },
-    "claudeBoss": {
+    "claudeDirector": {
       "model": "fable",
       "effort": "high"
     },
@@ -14,9 +14,9 @@
     }
   },
   "roles": {
-    "boss": {
-      "title": "Boss (Head of Product and Delivery)",
-      "engine": "boss",
+    "director": {
+      "title": "Director (Head of Product and Delivery)",
+      "engine": "director",
       "summary": "Interviews the owner, decides what to build, writes the PRD, reviews every phase, accepts or rejects the product, makes the go / no-go call, and runs the retrospective.",
       "skills": [
         "owner-interview",
@@ -43,7 +43,7 @@
     },
     "market-research": {
       "title": "Market Researcher",
-      "engine": "boss",
+      "engine": "director",
       "summary": "Evidence-based research on the market, competitors, users and pricing, with sources.",
       "skills": [
         "evidence-based-research",
@@ -62,7 +62,7 @@
     },
     "marketing": {
       "title": "Marketing Lead",
-      "engine": "boss",
+      "engine": "director",
       "summary": "Positioning, messaging, launch plan and launch copy.",
       "skills": [
         "evidence-based-research",
@@ -81,7 +81,7 @@
     },
     "sales": {
       "title": "Sales Lead",
-      "engine": "boss",
+      "engine": "director",
       "summary": "Ideal customer profile, pricing and packaging, pitch, demo script and outreach.",
       "skills": [
         "evidence-based-research",

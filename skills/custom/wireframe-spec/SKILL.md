@@ -78,7 +78,7 @@ For each screen, a table of every state it can be in, what triggers it, what the
 
 ## 7. Coverage
 
-Close `ux.md` with a table mapping every must-have PRD story to its flow and screens. A story with no screen is a gap to raise with the boss; a screen with no story is scope to question.
+Close `ux.md` with a table mapping every must-have PRD story to its flow and screens. A story with no screen is a gap to raise with the director; a screen with no story is scope to question.
 
 ## Review yourself before handing on
 

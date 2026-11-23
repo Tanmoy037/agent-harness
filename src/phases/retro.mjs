@@ -9,9 +9,9 @@ import * as memory from '../memory.mjs';
 /**
  * Retrospective: where the team learns.
  *
- * The harness gives the boss the factual record of the run: what was sent back in review
+ * The harness gives the director the factual record of the run: what was sent back in review
  * and why, what QA, security and design QA found, what the owner said, which steps failed,
- * and the lessons each agent proposed. The boss distils that into durable lessons per
+ * and the lessons each agent proposed. The director distils that into durable lessons per
  * role, team-wide lessons, owner preferences and product facts, retires lessons that
  * turned out wrong or redundant, and may propose a new skill for a procedure worth
  * keeping. The next run starts with all of it.
@@ -85,7 +85,7 @@ export function runMetrics(run, extra = {}) {
     run: state.id,
     project: path.basename(run.projectDir),
     status: state.data.status,
-    bossEngine: run.modes.bossEngine,
+    directorEngine: run.modes.directorEngine,
     steps: totals.steps,
     durationMin: Math.round(totals.durationMs / 60000),
     costUsd: Number(totals.costUsd.toFixed(2)),
@@ -151,7 +151,7 @@ ${memory.dumpForCuration({ roles, projectDir: run.projectDir })}`,
   for (const proposal of retro.skill_proposals ?? []) {
     if (!run.team.roles[proposal.role]) continue;
     if (ui.interactive) {
-      console.log(`\n${c.bold('The boss proposes a new skill')} for the ${run.team.roles[proposal.role].title}: ${c.cyan(proposal.name)}\n${c.dim(truncate(proposal.description, 300))}`);
+      console.log(`\n${c.bold('The director proposes a new skill')} for the ${run.team.roles[proposal.role].title}: ${c.cyan(proposal.name)}\n${c.dim(truncate(proposal.description, 300))}`);
       if (!(await ui.confirm('Add it to the team?', { fallback: true }))) continue;
     }
     const skill = writeLearnedSkill(proposal);

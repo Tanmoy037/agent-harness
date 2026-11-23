@@ -31,16 +31,16 @@ export function loadTeam() {
 }
 
 export function getRole(team, id) {
-  const role = team.roles[id];
+  const role = team.roles[id === 'boss' ? 'director' : id]; // "boss" is the role's old id
   if (!role) throw new HarnessError(`Unknown role "${id}". Roles: ${Object.keys(team.roles).join(', ')}`);
   return role;
 }
 
-/** Which engine actually runs a role, given who the owner chose as boss. */
+/** Which engine actually runs a role, given who the owner chose as director. */
 export function resolveEngine(team, role, modes) {
   if (role.engine === 'claude') return { kind: 'claude', ...team.engines.claude };
-  // The boss and the business specialists follow the chosen boss engine.
-  return modes.bossEngine === 'claude' ? { kind: 'claude', ...team.engines.claudeBoss } : { kind: 'codex', ...team.engines.codex };
+  // The director and the business specialists follow the chosen director engine.
+  return modes.directorEngine === 'claude' ? { kind: 'claude', ...team.engines.claudeDirector } : { kind: 'codex', ...team.engines.codex };
 }
 
 export function findSkill(name) {
@@ -116,7 +116,7 @@ export function buildTeam() {
   for (const role of Object.values(team.roles)) {
     const prompt = rolePrompt(role.id);
 
-    // Every role gets a Claude folder: Claude roles always, boss-side roles when Claude Fable is the boss.
+    // Every role gets a Claude folder: Claude roles always, director-side roles when Claude Fable is the director.
     const claudeDir = path.join(BUILD_DIR, 'claude', role.id);
     writeJson(path.join(claudeDir, '.claude-plugin', 'plugin.json'), {
       name: 'team',

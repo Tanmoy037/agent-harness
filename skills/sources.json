@@ -236,7 +236,7 @@
     "path": "skills/planning-and-task-breakdown",
     "license": "MIT",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Project planning for agent teams: dependency graph, vertical slices, per-task acceptance criteria, checkpoints, risks and parallelisation.",
     "needs": "None.",
@@ -331,7 +331,7 @@
     "path": "product-management/skills/roadmap-update",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Create or reprioritise a roadmap (Now/Next/Later, quarterly, OKR-aligned) with dependency mapping, capacity planning and change communication.",
     "needs": "None required. Optional connector: project tracker.",
@@ -344,7 +344,7 @@
     "path": "product-management/skills/stakeholder-update",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Status reporting by audience and cadence, with green/yellow/red rules and ROAM risk communication.",
     "needs": "None required. Optional connectors: chat, project tracker, meeting transcripts, knowledge base.",
@@ -370,7 +370,7 @@
     "path": "product-management/skills/write-spec",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Most complete PRD skill found: problem, goals, non-goals, user stories, P0/P1/P2 requirements, Given/When/Then acceptance criteria, metrics and scope-creep rules.",
     "needs": "None required. Optional connectors: project tracker, knowledge base, design tool.",
@@ -1324,7 +1324,7 @@
     ],
     "why": "Repository-grounded threat model with trust boundaries, assets, attacker capabilities, abuse paths and prioritised mitigations, written to a Markdown file against a fixed output contract.",
     "needs": "None.",
-    "risk_notes": "Step 6 pauses to ask the user to confirm assumptions; route that to the boss agent or it will stall. Repo's last commit is 2026-06-23, so about five months without updates. SKILL.md read in full."
+    "risk_notes": "Step 6 pauses to ask the user to confirm assumptions; route that to the director agent or it will stall. Repo's last commit is 2026-06-23, so about five months without updates. SKILL.md read in full."
   },
   {
     "name": "iac-security-review",
@@ -1586,7 +1586,7 @@
     "path": "pm-execution/skills/pre-mortem",
     "license": "MIT",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Risk analysis on a PRD or launch plan: Tigers, Paper Tigers and Elephants, launch-blocking versus fast-follow, with owner and date per mitigation.",
     "needs": "None. Web search is optional.",
@@ -1599,7 +1599,7 @@
     "path": "pm-execution/skills/strategy-red-team",
     "license": "MIT",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Attacks the load-bearing assumptions of a PRD or roadmap and returns a fails-if condition, kill criterion and cheapest test for each.",
     "needs": "None.",
@@ -1638,7 +1638,7 @@
     "path": "ai-shipping/skills/release-gate",
     "license": "MIT",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Strongest go/no-go discipline found: the owner says go, the agent supplies evidence, with rules on what counts as evidence and how to prove the reviewed build is the one serving.",
     "needs": "None for the decision rules. Mechanisms assume Next.js, Supabase, Clerk, Netlify, Railway, Vitest, Playwright.",
@@ -1677,7 +1677,7 @@
     "path": "skills/define-opportunity-tree",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Opportunity solution tree from a measurable outcome down to opportunities, solutions and assumption tests, with template and example.",
     "needs": "None.",
@@ -1690,7 +1690,7 @@
     "path": "skills/define-prioritization-framework",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Runs every applicable framework (RICE, ICE, MoSCoW, weighted scoring, Kano), compares rankings, adds sensitivity analysis and refuses to score without inputs.",
     "needs": "None.",
@@ -1703,7 +1703,7 @@
     "path": "skills/deliver-acceptance-criteria",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Turns a story or PRD slice into independently testable Given/When/Then criteria covering failure paths and non-functional needs, with a template and worked example.",
     "needs": "None.",
@@ -1716,7 +1716,7 @@
     "path": "skills/deliver-launch-checklist",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Cross-functional launch readiness checklist with owners, dates and explicit go/no-go criteria.",
     "needs": "None.",
@@ -1742,7 +1742,7 @@
     "path": "skills/foundation-build-risk-review",
     "license": "Apache-2.0",
     "roles": [
-      "boss"
+      "director"
     ],
     "why": "Pre-commitment gate that names the riskiest assumption and returns a verdict (build small, validate first, pivot first, don't build yet), which covers deciding what not to build.",
     "needs": "None.",
@@ -1785,7 +1785,7 @@
     ],
     "why": "Official Railway skill with 17 reference files covering deploy, config-as-code, variables, domains, databases (with analysis scripts), tracing and usage limits.",
     "needs": "railway CLI (5.28+ for `railway api`); browser/device-code login or RAILWAY_API_TOKEN / RAILWAY_TOKEN; jq and curl for the legacy API script; python3 for database analysis scripts; optional hosted MCP at mcp.railway.com",
-    "risk_notes": "Deploys without preflight: on deploy or signup intent it says to run `railway up` directly, 'Do NOT ask the user to run railway login first', and the description says 'do not refuse' signup requests. Install instructions include `curl -fsSL agents.railway.com | sh` and `bash <(curl -fsSL https://railway.com/install.sh) --agents -y`, and `railway setup agent -y` which installs skills/MCP into the agent. Asks for attribution env vars RAILWAY_CALLER and RAILWAY_AGENT_SESSION on every CLI call. scripts/railway-api.sh reads the user token from ~/.railway/config.json and POSTs to https://backboard.railway.com/graphql/v2 with skill-id headers. Python scripts shell out to the railway CLI and SSH into database services. Frontmatter allowed-tools pre-allows Bash(curl:*), Bash(npx:*), Bash(python3:*). Do not vendor the plugin's hooks/auto-approve-api.sh, which auto-approves railway commands."
+    "risk_notes": "Deploys without preflight: on deploy or signup intent it says to run `railway up` directly, 'Do NOT ask the user to run railway login first', and the description says 'do not refuse' signup requests. Install instructions include `curl -fsSL agents.railway.com | sh` and `bash <(curl -fsSL https://railway.com/install.sh) --agents -y`, and `railway setup agent -y` which installs skills/MCP into the agent. Asks for attribution env vars RAILWAY_CALLER and RAILWAY_AGENT_SESSION on every CLI call. scripts/railway-api.sh reads the user token from ~/.railway/config.json and POSTs to https://backboard.railway.com/graphql/v2 with skill-id headers. Python scripts shell out to the railway CLI and SSH into database services. Frontmatter allowed-tools pre-allows Bash(curl:*), Bash(npx:*), Bash(python3:*). Do not vendor the plugin's hooks/auto-approve-api.sh, which auto-approves railway commands. (synup-ignore: install commands quoted as a warning, never run)"
   },
   {
     "name": "render-deploy",
@@ -2045,7 +2045,7 @@
     ],
     "why": "Scripted Semgrep run that enforces --metrics=off, selects rulesets per language, merges SARIF and reports what failed or was skipped.",
     "needs": "semgrep CLI, git, Python 3; Semgrep Pro login optional.",
-    "risk_notes": "run-scans.sh does `git clone --depth 1` of third-party rule repositories (Trail of Bits, 0xdea, Decurity, elttam and others listed in references/rulesets.md) at scan time, so it needs network and executes rules from unpinned repos. Has a hard approval gate via AskUserQuestion that must be answered by an operator or the boss agent. CC BY-SA 4.0 share-alike. First 95 of 273 lines read; scripts skimmed by grep."
+    "risk_notes": "run-scans.sh does `git clone --depth 1` of third-party rule repositories (Trail of Bits, 0xdea, Decurity, elttam and others listed in references/rulesets.md) at scan time, so it needs network and executes rules from unpinned repos. Has a hard approval gate via AskUserQuestion that must be answered by an operator or the director agent. CC BY-SA 4.0 share-alike. First 95 of 273 lines read; scripts skimmed by grep."
   },
   {
     "name": "sharp-edges",

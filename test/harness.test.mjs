@@ -14,12 +14,20 @@ const tmp = (name) => fs.mkdtempSync(path.join(os.tmpdir(), `harness-${name}-`))
 const MEM = tmp('mem');
 process.env.HARNESS_MEMORY_DIR = MEM;
 
+// Tests must not depend on the machine's git setup (commit signing, global hooks, templates).
+const GITCONFIG = path.join(tmp('gitconfig'), 'config');
+fs.writeFileSync(GITCONFIG, '[user]\n\tname = Test\n\temail = test@example.com\n[init]\n\tdefaultBranch = main\n');
+process.env.GIT_CONFIG_GLOBAL = GITCONFIG;
+process.env.GIT_CONFIG_NOSYSTEM = '1';
+
 const { parseArgs, slug, Semaphore } = await import('../src/util.mjs');
 const { validateTasks } = await import('../src/schemas.mjs');
-const { validateModes, DEFAULT_MODES, needsHuman, hasUI, modesFromFlags } = await import('../src/modes.mjs');
-const { claudePermissions, codexPermissions } = await import('../src/permissions.mjs');
+const { validateModes, DEFAULT_MODES, needsHuman, hasUI, modesFromFlags, normalizeModes } = await import('../src/modes.mjs');
+const { claudePermissions, codexPermissions, agentEnv } = await import('../src/permissions.mjs');
+const gitlib = await import('../src/git.mjs');
+const { runJsonLines } = await import('../src/runners/proc.mjs');
 const memory = await import('../src/memory.mjs');
-const { loadTeam, findSkill, rolePrompt, resolveEngine } = await import('../src/team.mjs');
+const { loadTeam, findSkill, rolePrompt, resolveEngine, getRole } = await import('../src/team.mjs');
 const { ROLE_IDS } = await import('../src/schemas.mjs');
 
 function harness(args, { cwd, env = {} } = {}) {
@@ -78,7 +86,18 @@ test('modes validate and decide gates', () => {
   assert.equal(hasUI(validateModes({ ...m, productTypes: ['backend'] })), false);
   assert.throws(() => validateModes({ ...m, access: 'yolo' }), /Unknown access mode/);
   assert.throws(() => validateModes({ ...m, engineers: 40 }), /1 to 8/);
-  assert.deepEqual(modesFromFlags({ boss: 'claude', type: 'web-app, backend', engineers: '2' }), { bossEngine: 'claude', productTypes: ['web-app', 'backend'], engineers: 2 });
+  assert.deepEqual(modesFromFlags({ director: 'claude', type: 'web-app, backend', engineers: '2' }), { directorEngine: 'claude', productTypes: ['web-app', 'backend'], engineers: 2 });
+});
+
+test('the director role keeps accepting its old name, boss', () => {
+  assert.equal(modesFromFlags({ boss: 'claude' }).directorEngine, 'claude');
+  assert.equal(modesFromFlags({ director: 'codex', boss: 'claude' }).directorEngine, 'codex');
+  const legacy = { ...DEFAULT_MODES, bossEngine: 'claude' };
+  delete legacy.directorEngine;
+  assert.equal(validateModes(legacy).directorEngine, 'claude');
+  assert.equal(normalizeModes({ directorEngine: 'codex', bossEngine: 'claude' }).directorEngine, 'codex');
+  const team = loadTeam();
+  assert.equal(getRole(team, 'boss'), getRole(team, 'director'));
 });
 
 test('permissions: go-live commands stay blocked until unlocked, credentials always', () => {
@@ -100,6 +119,111 @@ test('permissions: go-live commands stay blocked until unlocked, credentials alw
   assert.ok(decision.settings.permissions.deny.includes('Edit'));
   assert.equal(codexPermissions({ access: 'guarded', write: false }).sandbox, 'read-only');
   assert.equal(codexPermissions({ access: 'guarded', write: true }).sandbox, 'workspace-write');
+  // Codex never gets full access: it could push or deploy, and no deny rule applies to it.
+  assert.equal(codexPermissions({ access: 'bypass', write: true }).sandbox, 'workspace-write');
+});
+
+test('agent environment: no credentials and no git push until go-live', () => {
+  const base = {
+    PATH: '/usr/bin:/bin',
+    HOME: '/home/x',
+    ANTHROPIC_API_KEY: 'keep',
+    AWS_ACCESS_KEY_ID: 'a',
+    AWS_PROFILE: 'prod',
+    GH_TOKEN: 'g',
+    GITHUB_TOKEN: 'g',
+    VERCEL_TOKEN: 'v',
+    SSH_AUTH_SOCK: '/tmp/agent',
+    KUBECONFIG: '/k',
+    GOOGLE_APPLICATION_CREDENTIALS: '/c.json',
+  };
+  const locked = agentEnv({ base });
+  for (const k of ['AWS_ACCESS_KEY_ID', 'AWS_PROFILE', 'GH_TOKEN', 'GITHUB_TOKEN', 'VERCEL_TOKEN', 'SSH_AUTH_SOCK', 'KUBECONFIG', 'GOOGLE_APPLICATION_CREDENTIALS']) {
+    assert.equal(locked[k], undefined, `${k} must not reach a locked agent`);
+  }
+  assert.equal(locked.PATH, base.PATH);
+  assert.equal(locked.ANTHROPIC_API_KEY, 'keep');
+
+  const unlocked = agentEnv({ base, goliveUnlocked: true });
+  assert.equal(unlocked.AWS_PROFILE, 'prod');
+  assert.equal(unlocked.GH_TOKEN, 'g');
+  assert.equal(unlocked.GIT_CONFIG_COUNT, undefined);
+
+  // The push lock holds however the push is spelled.
+  const dir = tmp('pushlock');
+  const remote = tmp('pushlock-remote');
+  git(remote, 'init', '-q', '--bare');
+  git(dir, 'init', '-q');
+  git(dir, 'commit', '-q', '--allow-empty', '-m', 'x');
+  git(dir, 'remote', 'add', 'origin', `file://${remote}`);
+  const env = { ...process.env, ...agentEnv({ base: process.env }) };
+  for (const cmd of [['git', 'push', '-q', 'origin', 'HEAD:main'], ['sh', '-c', 'git push -q origin HEAD:main'], ['git', 'push', '-q', remote, 'HEAD:main']]) {
+    const r = spawnSync(cmd[0], cmd.slice(1), { cwd: dir, env, encoding: 'utf8' });
+    if (cmd.includes(remote)) continue; // a bare path has no scheme to rewrite; covered by the deny rules instead
+    assert.notEqual(r.status, 0, `${cmd.join(' ')} should be refused before go-live`);
+  }
+  const ok = spawnSync('git', ['push', '-q', 'origin', 'HEAD:main'], { cwd: dir, env: { ...process.env, ...agentEnv({ base: process.env, goliveUnlocked: true }) } });
+  assert.equal(ok.status, 0, 'pushing works once go-live is unlocked');
+});
+
+test('git: commits are signed when configured, and fall back to unsigned only when signing cannot complete', async () => {
+  const dir = tmp('signing');
+  git(dir, 'init', '-q');
+  git(dir, 'commit', '-q', '--allow-empty', '-m', 'base');
+  // A signer that always fails, like a hardware key with nobody to touch it.
+  git(dir, 'config', 'commit.gpgsign', 'true');
+  git(dir, 'config', 'gpg.program', 'false');
+
+  fs.writeFileSync(path.join(dir, 'a.txt'), 'a');
+  assert.ok(await gitlib.commitAll(dir, 'auto falls back'));
+
+  process.env.HARNESS_GIT_SIGN = 'require';
+  try {
+    fs.writeFileSync(path.join(dir, 'b.txt'), 'b');
+    await assert.rejects(gitlib.commitAll(dir, 'require stops'), /gpg|sign/i);
+  } finally {
+    delete process.env.HARNESS_GIT_SIGN;
+  }
+  git(dir, 'reset', '-q');
+
+  // A merge whose commit cannot be signed is concluded unsigned, not left half-done.
+  git(dir, 'checkout', '-q', '-b', 'feature');
+  fs.writeFileSync(path.join(dir, 'c.txt'), 'c');
+  git(dir, 'add', 'c.txt');
+  git(dir, '-c', 'commit.gpgsign=false', 'commit', '-q', '-m', 'c');
+  git(dir, 'checkout', '-q', '-');
+  fs.writeFileSync(path.join(dir, 'd.txt'), 'd');
+  git(dir, 'add', '-A');
+  git(dir, '-c', 'commit.gpgsign=false', 'commit', '-q', '-m', 'd');
+  assert.deepEqual(await gitlib.mergeBranch(dir, 'feature', 'merge feature'), { ok: true });
+  assert.equal(await gitlib.mergeInProgress(dir), false);
+  assert.ok(fs.existsSync(path.join(dir, 'c.txt')));
+});
+
+test('an agent and everything it started stop when it finishes', { skip: process.platform === 'win32' }, async () => {
+  const dir = tmp('proc');
+  const pidFile = path.join(dir, 'server.pid');
+  // A stand-in agent that leaves a "dev server" running in the background, then reports.
+  const res = await runJsonLines({
+    cmd: 'sh',
+    args: ['-c', `sleep 300 & echo $! > ${pidFile}; echo '{"type":"result"}'`],
+    cwd: dir,
+    env: process.env,
+    logFile: path.join(dir, 'log.jsonl'),
+    onEvent: () => {},
+  });
+  assert.equal(res.code, 0);
+  const pid = Number(fs.readFileSync(pidFile, 'utf8'));
+  let alive = true;
+  for (let i = 0; i < 50 && alive; i++) {
+    try {
+      process.kill(pid, 0);
+      await new Promise((r) => setTimeout(r, 20));
+    } catch {
+      alive = false;
+    }
+  }
+  assert.equal(alive, false, 'the background process should be gone');
 });
 
 test('memory: remembers, counts confirmations instead of duplicating, recalls and retires', () => {
@@ -129,8 +253,8 @@ test('team registry: every role has a prompt and every assigned skill is install
     for (const skill of role.skills) assert.ok(findSkill(skill), `${role.id}: skill "${skill}" is installed`);
   }
   const modes = validateModes({ ...DEFAULT_MODES });
-  assert.equal(resolveEngine(team, team.roles.boss, modes).kind, 'codex');
-  assert.equal(resolveEngine(team, team.roles.boss, { ...modes, bossEngine: 'claude' }).model, 'fable');
+  assert.equal(resolveEngine(team, team.roles.director, modes).kind, 'codex');
+  assert.equal(resolveEngine(team, team.roles.director, { ...modes, directorEngine: 'claude' }).model, 'fable');
   assert.equal(resolveEngine(team, team.roles['senior-engineer'], modes).model, 'opus');
   for (const engine of Object.values(team.engines)) assert.equal(engine.effort, 'high');
 });
@@ -140,7 +264,7 @@ test('full pipeline on a new product with stand-in agents', () => {
   const r = harness(['run', 'Build a tiny invoicing app', '--project', dir, '--defaults', '--approvals', 'autonomous', '--no-interactive', '--quiet']);
   assert.equal(r.status, 0, r.stdout + r.stderr);
   assert.match(r.stdout, /Run complete/);
-  assert.match(r.stdout, /Merge conflict on feature-b/, 'the scripted merge conflict was hit and resolved');
+  assert.match(r.stdout, /Merge conflict on feature-[ab]/, 'the scripted merge conflict was hit and resolved (whichever task merges second)');
   assert.match(r.stdout, /Verification round 2/, 'the product was sent back once and re-verified');
 
   for (const f of ['product/PRD.md', 'design/design-system.md', 'engineering/tasks.json', 'qa/product-verification.md', 'security/security-review.md', 'platform/runbook.md']) {

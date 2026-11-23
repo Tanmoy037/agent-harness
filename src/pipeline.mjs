@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { c, formatDuration, HarnessError, truncate } from './util.mjs';
 import { banner, info, ok, warn, fail } from './ui.mjs';
-import { hasUI, describeModes } from './modes.mjs';
+import { hasUI, describeModes, normalizeModes } from './modes.mjs';
 import { Run, PauseRun } from './run.mjs';
 import { RunState, harnessDir, saveProjectConfig, loadProjectConfig } from './state.mjs';
 import { buildTeam, loadTeam } from './team.mjs';
@@ -142,7 +142,7 @@ export async function executeRun(projectDir, state, { ui, options = {}, from, un
   const built = buildTeam();
   for (const p of built.problems) warn(p);
   const team = loadTeam();
-  const modes = state.data.modes;
+  const modes = (state.data.modes = normalizeModes(state.data.modes));
   const run = new Run({ projectDir, state, team, modes, ui, options });
   const phases = selectPhases({ from, until, only });
 
@@ -205,7 +205,7 @@ function printSummary(run, elapsedMs) {
   console.log(`Documents: ${path.join(run.projectDir, state.data.docsDir)}`);
   const deferred = state.get('verify.deferred', []);
   if (deferred.length) {
-    console.log(`\n${c.bold('Deferred by the boss:')}`);
+    console.log(`\n${c.bold('Deferred by the director:')}`);
     for (const d of deferred.slice(0, 10)) console.log(`  - ${truncate(d, 160)}`);
   }
   if (state.data.status === 'done') {

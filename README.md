@@ -4,14 +4,14 @@
 
 **A software company of AI agents.**
 
-A boss that researches, decides and checks. Designers who study real products before drawing anything.<br>
+A director who researches, decides and checks the work. Designers who study real products before drawing anything.<br>
 Engineers who map a codebase before touching it. QA, security and platform who sign off on the whole product.
 
 ![Node](https://img.shields.io/badge/node-%E2%89%A5%2020-3c873a)
 ![Roles](https://img.shields.io/badge/roles-13-4f46e5)
 ![Skills](https://img.shields.io/badge/skills-191-0ea5e9)
 ![Engines](https://img.shields.io/badge/engines-Codex%20%2B%20Claude-111827)
-![Tests](https://img.shields.io/badge/tests-10%20passing-16a34a)
+![Tests](https://img.shields.io/badge/tests-14%20passing-16a34a)
 
 </div>
 
@@ -47,7 +47,7 @@ Most products built by AI agents look the same and break in the same places. Thi
 |---|---|
 | **Design from evidence** | Before anything is drawn, the designers capture and measure 12 to 20 real, live products that real customers use. Every screen then passes a slop check that knows the tells of generic AI-made design. |
 | **Understand before changing** | On an existing codebase, the engineers first build a knowledge base: the code divided into areas, each surveyed in depth, plus how it is deployed, tested and secured. Everyone works from that map. |
-| **A boss who decides** | One agent owns the requirements, reviews every phase, accepts or rejects the product against them, and makes the release call. Work that is not good enough goes back to the role that can fix it. |
+| **A director who decides** | One agent owns the requirements, reviews every phase, accepts or rejects the product against them, and makes the release call. Work that is not good enough goes back to the role that can fix it. |
 | **A team that learns** | After every run, a retrospective turns what reviews, QA and security found into lessons each role reads before its next job. Your feedback is kept word for word. |
 
 ---
@@ -57,8 +57,8 @@ Most products built by AI agents look the same and break in the same places. Thi
 ```mermaid
 flowchart TD
     Owner(["You, the owner"])
-    Boss["Boss<br/>product and project manager"]
-    Owner <--> Boss
+    Director["Director<br/>product and project manager"]
+    Owner <--> Director
 
     subgraph Business["Business"]
         MR["Market researcher"]
@@ -85,15 +85,15 @@ flowchart TD
         PL["Staff platform engineer"]
     end
 
-    Boss --> Business
-    Boss --> Design
-    Boss --> Engineering
-    Boss --> Assurance
+    Director --> Business
+    Director --> Design
+    Director --> Engineering
+    Director --> Assurance
 ```
 
 | Role | Engine | What it does |
 |---|---|---|
-| **Boss** | Codex or Claude Fable | Interviews you, writes the requirements, reviews every phase, accepts or rejects the product, makes the go / no-go call, runs the retrospective |
+| **Director** | Codex or Claude Fable | Interviews you, writes the requirements, reviews every phase, accepts or rejects the product, makes the go / no-go call, runs the retrospective |
 | **Market researcher, marketing lead, sales lead** | Codex or Claude Fable | Market and competitor research with sources, positioning, launch plan, sales kit |
 | **UX designer** | Claude Opus | Studies real products in the industry, then flows, wireframes, content and the screen specification |
 | **Staff product designer** | Claude Opus | Three distinct coded directions, the design system, tokens, prototype, and design QA of what was built |
@@ -127,16 +127,16 @@ flowchart LR
 
 | # | Phase | What happens |
 |---|---|---|
-| 1 | **Survey** | Only when the folder already has code. The principal engineer divides the codebase into areas, staff engineers survey them in parallel, platform, QA and security map deployment, testing and security, and the boss is briefed. Later runs refresh only what changed. |
-| 2 | **Interview** | The boss researches the industry, then asks you its questions in the terminal. |
+| 1 | **Survey** | Only when the folder already has code. The principal engineer divides the codebase into areas, staff engineers survey them in parallel, platform, QA and security map deployment, testing and security, and the director is briefed. Later runs refresh only what changed. |
+| 2 | **Interview** | The director researches the industry, then asks you its questions in the terminal. |
 | 3 | **Research and PRD** | Market research, the requirements, a challenge of those requirements by engineering and UX, positioning. |
 | 4 | **Design** | Study of real sites, UX and wireframes, three coded directions, your choice, design system and prototype, screen specification. |
 | 5 | **Architecture and plan** | Architecture, test strategy, threat model, deployment plan, and a task graph for parallel work. |
 | 6 | **Build** | Tasks run in parallel worktrees. Each is code-reviewed before it merges. |
-| 7 | **Verify** | QA, security and design QA examine the whole product. The boss accepts it or sends fix tasks back, and it is verified again. |
+| 7 | **Verify** | QA, security and design QA examine the whole product. The director accepts it or sends fix tasks back, and it is verified again. |
 | 8 | **Launch material** | Launch plan and sales kit. |
 | 9 | **Release** | Delivery pipeline, deployment security review, go / no-go, your approval, deploy, live smoke test. |
-| 10 | **Retrospective** | The boss turns what happened into lessons the team keeps. |
+| 10 | **Retrospective** | The director turns what happened into lessons the team keeps. |
 
 The work happens on a branch named `harness/<run-id>`, so your own branch is never touched. The team's documents are written to `docs/`, or to `docs/team/` when the product already has a `docs` folder.
 
@@ -144,7 +144,7 @@ The work happens on a branch named `harness/<run-id>`, so your own branch is nev
 
 ## Quick start
 
-**You need:** Node 20 or newer, git, the [`claude`](https://claude.com/claude-code) CLI logged in, and the `codex` CLI logged in. Codex is optional: without it the boss runs on Claude Fable.
+**You need:** Node 20 or newer, git, the [`claude`](https://claude.com/claude-code) CLI logged in, and the `codex` CLI logged in. Codex is optional: without it the director runs on Claude Fable.
 
 ```bash
 git clone https://github.com/Tanmoy037/agent-harness.git
@@ -166,7 +166,7 @@ Then, from the folder of any product, new or existing:
 harness run "what you want built"
 ```
 
-The harness asks how the team should work (see [Modes](#modes)), the boss interviews you, and the run begins. Press Ctrl-C at any time; `harness resume` continues from the first unfinished step.
+The harness asks how the team should work (see [Modes](#modes)), the director interviews you, and the run begins. Press Ctrl-C at any time; `harness resume` continues from the first unfinished step.
 
 ---
 
@@ -176,7 +176,7 @@ Nothing about how the team works is fixed. You choose at the start of each run; 
 
 | Mode | Flag | Choices |
 |---|---|---|
-| Who is the boss | `--boss` | `codex` · `claude` (Fable) |
+| Who is the director | `--director` | `codex` · `claude` (Fable) |
 | Your approval points | `--approvals` | `design-golive` (default) · `every-phase` · `golive-only` · `autonomous` |
 | Agent access to your machine | `--access` | `guarded` (default) · `bypass` · `strict` |
 | What is being built | `--type` | `web-app` · `marketing-site` · `mobile-app` · `backend` |
@@ -189,12 +189,18 @@ Nothing about how the team works is fixed. You choose at the start of each run; 
 
 <br>
 
-In every mode, agents cannot read your SSH, cloud or CLI credentials and cannot use `sudo`. Pushing, publishing and deploying stay blocked until go-live is approved, by you or, in `autonomous`, by the boss.
+In every mode, agents cannot use `sudo`, and Claude roles cannot read your SSH, cloud or CLI credential files. Pushing, publishing and deploying stay blocked until go-live is approved, by you or, in `autonomous`, by the director. That lock has three layers, so it does not depend on an agent spelling a command the expected way:
+
+- **No credentials in the environment.** Cloud, registry and git-host variables (`AWS_*`, `GH_TOKEN`, `VERCEL_TOKEN`, `KUBECONFIG`, `SSH_AUTH_SOCK` and the like) are removed from every agent's environment. Only the approved deploy step gets your full environment.
+- **No git push.** Every push URL is rewritten to a scheme git cannot use, so `git push`, `sh -c "git push"` and a script that pushes all fail the same way.
+- **Deny rules** for deploy and publish commands (`vercel`, `terraform apply`, `kubectl apply`, `npm publish` and more), applied in every Claude permission mode.
+
+Codex roles only research and write documents, so they run in Codex's workspace sandbox in every mode, never with full access. The sandbox limits what they can write, not what they can read.
 
 | Mode | Behaviour |
 |---|---|
 | `guarded` | Claude's automatic permission mode: routine work runs, risky actions are refused |
-| `bypass` | No permission checks beyond the rules above. Fastest; an agent mistake can affect anything your account can touch |
+| `bypass` | No permission checks beyond the rules above. Fastest; an agent mistake can still change anything on this machine your account can write |
 | `strict` | File edits plus a fixed list of commands. Safest; agents are blocked more often |
 
 </details>
@@ -209,9 +215,9 @@ In every mode, agents cannot read your SSH, cloud or CLI credentials and cannot 
 | `design-golive` | The design direction, and anything that deploys or publishes |
 | `every-phase` | The requirements, the design, the architecture and the release |
 | `golive-only` | Only what deploys or publishes |
-| `autonomous` | Nothing. The boss makes every call, including deploying |
+| `autonomous` | Nothing. The director makes every call, including deploying |
 
-When you give feedback at an approval point, the boss turns it into revision instructions for the right roles, and your words are stored in the team's memory.
+When you give feedback at an approval point, the director turns it into revision instructions for the right roles, and your words are stored in the team's memory.
 
 </details>
 
@@ -243,14 +249,14 @@ Useful flags: `--project <dir>` to work on another folder, `--from <phase>` and 
 flowchart LR
     R["Run"] --> F["What reviews, QA and<br/>security actually found"]
     Y["Your words at<br/>approval points"] --> M
-    F --> X["Boss retrospective"]
+    F --> X["Director retrospective"]
     X --> M[("Team memory")]
     M --> N["Every agent's<br/>next assignment"]
     N --> R
 ```
 
 - **Lessons per role, team lessons, your preferences and product facts** are plain JSON-lines files under `memory/`, with product facts under `<product>/.harness/memory/`. They are placed in every agent's assignment.
-- **Only two things write lessons:** your own words at an approval point, stored verbatim, and the boss's retrospective, which works from the factual record of the run.
+- **Only two things write lessons:** your own words at an approval point, stored verbatim, and the director's retrospective, which works from the factual record of the run.
 - **A lesson seen again is counted, not duplicated,** so confirmed lessons rise to the top. Wrong ones are retired.
 - **The design reference library and direction log** grow with every product, so later products start from more evidence and do not converge on one look.
 - **A recurring procedure can become a learned skill** in `skills/learned/`. You are asked first when you are at the terminal.
@@ -282,7 +288,7 @@ Each role carries its own curated set, visible only to that role's sessions.
 | QA | `regression-impact-map` · `quality-gates` · `bug-report` · `browser-testing` |
 | Security | `authz-review` · `threat-intel-sweep` |
 | Platform | `platform-selection` · `production-readiness` · `release-and-rollback` |
-| Boss | `owner-interview` · `acceptance-review` · `go-no-go` · `team-coordination` · `retrospective-lessons` · `risk-register` |
+| Director | `owner-interview` · `acceptance-review` · `go-no-go` · `team-coordination` · `retrospective-lessons` · `risk-register` |
 | Business | `evidence-based-research` |
 
 </details>
@@ -343,7 +349,31 @@ Models are set in `team/roles.json` under `engines`. The Codex model is left uns
 npm test
 ```
 
-runs unit tests and a full pipeline with stand-in agents (`HARNESS_FAKE_AGENTS=1`). No model is called, but git, worktrees, merge conflicts, review loops, approval pauses, resume and memory are exercised for real.
+runs unit tests and a full pipeline with stand-in agents (`HARNESS_FAKE_AGENTS=1`). No model is called, but git, worktrees, merge conflicts, review loops, approval pauses, resume and memory are exercised for real. The tests use their own git config, so commit signing and global hooks on your machine do not affect them (and never ask for your key).
+
+<details>
+<summary><b>Commit signing</b></summary>
+
+<br>
+
+The team's commits follow your git config: if you sign commits, they are signed. Signing that needs a person (a hardware key, a 1Password, Secretive or fingerprint prompt) cannot complete while nobody is at the keyboard, so `HARNESS_GIT_SIGN` decides what happens then:
+
+| Value | Behaviour |
+|---|---|
+| `auto` (default) | Sign when configured; if signing fails, commit unsigned on the run branch and say so once |
+| `require` | Sign, and stop the run if signing fails |
+| `off` | Never sign the team's commits |
+
+</details>
+
+<details>
+<summary><b>Agent processes</b></summary>
+
+<br>
+
+Each agent runs in its own process group. When it finishes, times out or the run is interrupted, the dev servers, browsers and test runners it started stop with it, so ports are freed and nothing keeps running after the harness exits.
+
+</details>
 
 ---
 

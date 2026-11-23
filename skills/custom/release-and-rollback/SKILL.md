@@ -106,7 +106,7 @@ Append one entry per deployment to the deployments document in the platform fold
 ```
 ## <date and time, with timezone> — <environment>
 Deployed by: platform engineer, run <run id>
-Approved by: <owner, or the boss under autonomous mode>
+Approved by: <owner, or the director under autonomous mode>
 Account / project / region: <as reported by the tool>
 Version: <commit hash> (<branch>)   Previous version: <identifier>   <- rollback target
 Strategy: <as chosen>

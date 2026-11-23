@@ -88,7 +88,7 @@ What users say in their own words is the best evidence of what they need, and it
 
 ## 8. When you cannot find it
 
-Say so, specifically: what you looked for, where you looked, and what the nearest available evidence is. Then say what it would take to find out (a survey, an interview, a paid report, a question for the owner). An honest "not found" lets the boss decide whether to proceed on an assumption; a plausible invented figure removes that choice.
+Say so, specifically: what you looked for, where you looked, and what the nearest available evidence is. Then say what it would take to find out (a survey, an interview, a paid report, a question for the owner). An honest "not found" lets the director decide whether to proceed on an assumption; a plausible invented figure removes that choice.
 
 ## 9. Citing
 
